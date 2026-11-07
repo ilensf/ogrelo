@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import Medidor from '../components/Medidor.vue';
+import { DIETAS } from '../lib/etiquetas';
+import type { Dieta } from '../lib/tipos';
+
+const dietas = Object.keys(DIETAS) as Dieta[];
+---
+
+<Base titulo="Cómo se hace esta guía | Veggie Coruña">
+  <div class="contenedor texto">
+    <h1>Cómo se hace esta guía</h1>
+
+    <p class="intro">
+      Una guía para quien come vegano y para quien come vegetariano: separamos los sitios 100 % vegetales de los que simplemente
+      tienen buenas opciones, y marcamos cada uno con su color.
+    </p>
+
+    <h2>Qué significa el medidor de hojas</h2>
+    <ul class="leyenda">
+      {
+        dietas.map((d) => (
+          <li class={`d-${d}`}>
+            <Medidor dieta={d} />
+            <span>
+              <strong>{DIETAS[d].nombre}.</strong> {DIETAS[d].descripcion}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>De dónde salen los datos</h2>
+    <p>
+      La lista parte del directorio de HappyCow para A Coruña, contrastado con prensa local (Quincemil, El Ideal Gallego) y las
+      webs de los propios locales. Las descripciones son nuestras. Las notas son las de HappyCow: sobre 5 en sitios 100 %
+      veganos o vegetarianos y sobre 4 en los demás.
+    </p>
+    <p>
+      No copiamos reseñas de otras plataformas: cada ficha enlaza a Google Maps y HappyCow para leerlas completas.
+    </p>
+
+    <h2>Bus y aparcamiento</h2>
+    <p>
+      Las paradas y líneas cercanas se calculan con los datos abiertos GTFS de la Compañía de Tranvías de La Coruña, buscando
+      paradas a menos de 400 metros a pie en línea recta. La dificultad para aparcar es una estimación por barrio que tiene en
+      cuenta la ORA, las calles peatonales y los parkings públicos.
+    </p>
+
+    <h2>Sitios que ya no están</h2>
+    <p>
+      Hemos dejado fuera locales que aparecen en guías antiguas pero han cerrado o cambiado de manos: A Pastar, Utopía, Ruca
+      Bocata, El Rincón de Alba, Taberna Gaia y A Factoría Verde (puesta en traspaso en 2025). Si alguno reabre, avísanos.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .texto {
+    max-width: 46rem;
+    padding-top: 2.5rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    letter-spacing: -0.045em;
+    margin-bottom: 1.5rem;
+  }
+  h2 {
+    font-size: 1.35rem;
+    margin: 2rem 0 0.75rem;
+  }
+  .intro {
+    font-size: 1.15rem;
+    color: var(--tinta-suave);
+  }
+  p + p {
+    margin-top: 0.8rem;
+  }
+  .leyenda {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .leyenda li {
+    display: flex;
+    gap: 0.9rem;
+    align-items: baseline;
+  }
+</style>

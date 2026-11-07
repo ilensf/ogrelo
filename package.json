@@ -1,0 +1,26 @@
+{
+  "name": "veggie-coruna",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Directorio de restaurantes veganos y vegetarianos de A Coruña",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run data:validar && astro build",
+    "preview": "astro preview",
+    "data:validar": "node scripts/validar-datos.mjs",
+    "data:geocodificar": "node scripts/geocodificar.mjs",
+    "data:transporte": "node scripts/transporte.mjs"
+  },
+  "dependencies": {
+    "@astrojs/vue": "^7.1.2",
+    "@fontsource/familjen-grotesk": "^5.3.0",
+    "astro": "^7.4.7",
+    "leaflet": "^1.9.4",
+    "vue": "^3.5.45"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.12",
+    "adm-zip": "^0.6.1"
+  }
+}

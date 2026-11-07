@@ -1,0 +1,1185 @@
+{
+  "_info": "Generado por `npm run data:transporte`. No editar a mano.",
+  "generado": "2026-11-07T01:54:51.051Z",
+  "fuente": "GTFS de la Compañía de Tranvías de La Coruña",
+  "restaurantes": {
+    "la-cuchara-veggie": {
+      "paradas": [
+        {
+          "nombre": "Panadeiras, Museo",
+          "distancia": 127,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        },
+        {
+          "nombre": "Pza. de España",
+          "distancia": 184,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Baltasar Pardal",
+          "distancia": 207,
+          "lineas": [
+            "3A",
+            "17"
+          ]
+        }
+      ],
+      "lineas": [
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "BUH"
+      ]
+    },
+    "magpies-coven": {
+      "paradas": [
+        {
+          "nombre": "Orillamar, 42",
+          "distancia": 109,
+          "lineas": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "17",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Baltasar Pardal",
+          "distancia": 123,
+          "lineas": [
+            "3A",
+            "17"
+          ]
+        },
+        {
+          "nombre": "Pza. de España, 24",
+          "distancia": 174,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "BUH"
+      ]
+    },
+    "mahara-taberna-rock": {
+      "paradas": [
+        {
+          "nombre": "San Andrés, 33",
+          "distancia": 113,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Panadeiras, Museo",
+          "distancia": 145,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        },
+        {
+          "nombre": "P.Marítimo,Salesiano",
+          "distancia": 227,
+          "lineas": [
+            "3A",
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "BUH"
+      ]
+    },
+    "bico": {
+      "paradas": [
+        {
+          "nombre": "Orillamar, 42",
+          "distancia": 65,
+          "lineas": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "17",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "A Torre, 63",
+          "distancia": 208,
+          "lineas": [
+            "3A",
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11",
+            "17"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "BUH"
+      ]
+    },
+    "senpan": {
+      "paradas": [
+        {
+          "nombre": "Pza. de Vigo",
+          "distancia": 51,
+          "lineas": [
+            "4",
+            "11",
+            "21"
+          ]
+        },
+        {
+          "nombre": "Linares Rivas, 26",
+          "distancia": 104,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "17",
+            "21",
+            "23",
+            "23A",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Juan Flórez, 56",
+          "distancia": 146,
+          "lineas": [
+            "4",
+            "5",
+            "11",
+            "20",
+            "24",
+            "UDC"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "4",
+        "5",
+        "11",
+        "17",
+        "20",
+        "21",
+        "23",
+        "23A",
+        "24",
+        "BUH",
+        "UDC"
+      ]
+    },
+    "moras": {
+      "paradas": [
+        {
+          "nombre": "Av.Mariña,T.Rosalía",
+          "distancia": 135,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3A",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "Autoridade Portuaria",
+          "distancia": 141,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3",
+            "5",
+            "7",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "San Andrés, 33",
+          "distancia": 163,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "3",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "23",
+        "23A",
+        "BUH"
+      ]
+    },
+    "itaca-33": {
+      "paradas": [
+        {
+          "nombre": "Porta Real",
+          "distancia": 113,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3A",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "Porta Real, Dársena",
+          "distancia": 119,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3",
+            "5",
+            "7",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "Pza. de España, 24",
+          "distancia": 319,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "3",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "23",
+        "23A"
+      ]
+    },
+    "hellas-cocina": {
+      "paradas": [
+        {
+          "nombre": "Autoridade Portuaria",
+          "distancia": 46,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3",
+            "5",
+            "7",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "Av.Mariña,T.Rosalía",
+          "distancia": 47,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3A",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "San Andrés, 33",
+          "distancia": 205,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "3",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "23",
+        "23A",
+        "BUH"
+      ]
+    },
+    "al-wahab": {
+      "paradas": [
+        {
+          "nombre": "San Andrés, 33",
+          "distancia": 81,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "San Andres, Africano",
+          "distancia": 84,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        },
+        {
+          "nombre": "Obelisco",
+          "distancia": 250,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3",
+            "5",
+            "7",
+            "17",
+            "23",
+            "23A"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "3",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "23",
+        "23A",
+        "BUH"
+      ]
+    },
+    "fabula-cafe": {
+      "paradas": [
+        {
+          "nombre": "Juana de Vega",
+          "distancia": 44,
+          "lineas": [
+            "3",
+            "7",
+            "21"
+          ]
+        },
+        {
+          "nombre": "Pontevedra,IESGuarda",
+          "distancia": 97,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11",
+            "22"
+          ]
+        },
+        {
+          "nombre": "San Andrés, 121",
+          "distancia": 138,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "21",
+        "22",
+        "BUH"
+      ]
+    },
+    "lumar": {
+      "paradas": [
+        {
+          "nombre": "Pza. de Vigo",
+          "distancia": 12,
+          "lineas": [
+            "4",
+            "11",
+            "21"
+          ]
+        },
+        {
+          "nombre": "Linares Rivas, 26",
+          "distancia": 83,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "17",
+            "21",
+            "23",
+            "23A",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Juan Flórez, 82",
+          "distancia": 139,
+          "lineas": [
+            "4",
+            "5",
+            "11",
+            "20",
+            "24",
+            "UDC"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "4",
+        "5",
+        "11",
+        "17",
+        "20",
+        "21",
+        "23",
+        "23A",
+        "24",
+        "BUH",
+        "UDC"
+      ]
+    },
+    "a-parva": {
+      "paradas": [
+        {
+          "nombre": "Panadeiras, Museo",
+          "distancia": 135,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        },
+        {
+          "nombre": "Pza. de España",
+          "distancia": 215,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Av.Mariña,T.Rosalía",
+          "distancia": 224,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3A",
+            "17",
+            "23",
+            "23A"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "23",
+        "23A",
+        "BUH"
+      ]
+    },
+    "kohlanta": {
+      "paradas": [
+        {
+          "nombre": "Juana de Vega",
+          "distancia": 94,
+          "lineas": [
+            "3",
+            "7",
+            "21"
+          ]
+        },
+        {
+          "nombre": "San Andrés, 121",
+          "distancia": 95,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Pontevedra,IESGuarda",
+          "distancia": 127,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11",
+            "22"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "21",
+        "22",
+        "BUH"
+      ]
+    },
+    "taj-mahal": {
+      "paradas": [
+        {
+          "nombre": "Av. de Bos Aires",
+          "distancia": 66,
+          "lineas": [
+            "3",
+            "3A",
+            "7",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Av. de Fisterra, 44",
+          "distancia": 238,
+          "lineas": [
+            "6",
+            "6A",
+            "22"
+          ]
+        },
+        {
+          "nombre": "Av. de Fisterra, 31",
+          "distancia": 251,
+          "lineas": [
+            "6",
+            "6A",
+            "20"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "3A",
+        "6",
+        "6A",
+        "7",
+        "20",
+        "22",
+        "BUH"
+      ]
+    },
+    "thai-bangkok": {
+      "paradas": [
+        {
+          "nombre": "Pza. do Mestre Mateo",
+          "distancia": 145,
+          "lineas": [
+            "3",
+            "3A",
+            "7"
+          ]
+        },
+        {
+          "nombre": "Av. de Bos Aires",
+          "distancia": 197,
+          "lineas": [
+            "3",
+            "3A",
+            "7",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Av. de Fisterra, 31",
+          "distancia": 223,
+          "lineas": [
+            "6",
+            "6A",
+            "20"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "3A",
+        "6",
+        "6A",
+        "7",
+        "20",
+        "BUH"
+      ]
+    },
+    "breens-tavern": {
+      "paradas": [
+        {
+          "nombre": "Porta Real",
+          "distancia": 120,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3A",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "Porta Real, Dársena",
+          "distancia": 126,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3",
+            "5",
+            "7",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "Pza. de España, 24",
+          "distancia": 249,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "3",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "23",
+        "23A"
+      ]
+    },
+    "oh-my-food": {
+      "paradas": [
+        {
+          "nombre": "Av. Monelos, Torre 8",
+          "distancia": 57,
+          "lineas": [
+            "4",
+            "12A",
+            "14"
+          ]
+        },
+        {
+          "nombre": "Av. de Monelos, 45",
+          "distancia": 110,
+          "lineas": [
+            "1",
+            "4",
+            "12A",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "S.Madariaga, mercado",
+          "distancia": 234,
+          "lineas": [
+            "1A",
+            "12A"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "4",
+        "12A",
+        "14",
+        "BUH"
+      ]
+    },
+    "giova": {
+      "paradas": [
+        {
+          "nombre": "Panadeiras, Museo",
+          "distancia": 25,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        },
+        {
+          "nombre": "Rúa Hospital,Zalaeta",
+          "distancia": 147,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Baltasar Pardal",
+          "distancia": 265,
+          "lineas": [
+            "3A",
+            "17"
+          ]
+        }
+      ],
+      "lineas": [
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "BUH"
+      ]
+    },
+    "terra-mia": {
+      "paradas": [
+        {
+          "nombre": "Juan Flórez, 82",
+          "distancia": 117,
+          "lineas": [
+            "4",
+            "5",
+            "11",
+            "20",
+            "24",
+            "UDC"
+          ]
+        },
+        {
+          "nombre": "Pza. de Vigo",
+          "distancia": 193,
+          "lineas": [
+            "4",
+            "11",
+            "21"
+          ]
+        },
+        {
+          "nombre": "Primo Rivera,viaduto",
+          "distancia": 212,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "5",
+            "17",
+            "22",
+            "23",
+            "23A",
+            "BUH"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "4",
+        "5",
+        "11",
+        "17",
+        "20",
+        "21",
+        "22",
+        "23",
+        "23A",
+        "24",
+        "BUH",
+        "UDC"
+      ]
+    },
+    "donaya-ramen": {
+      "paradas": [
+        {
+          "nombre": "San Andrés, 33",
+          "distancia": 76,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Panadeiras, Museo",
+          "distancia": 169,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        },
+        {
+          "nombre": "Av.Mariña,T.Rosalía",
+          "distancia": 192,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3A",
+            "17",
+            "23",
+            "23A"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "23",
+        "23A",
+        "BUH"
+      ]
+    },
+    "ancora": {
+      "paradas": [
+        {
+          "nombre": "Av.Navarra,Rd.M.Alto",
+          "distancia": 59,
+          "lineas": [
+            "6",
+            "6A"
+          ]
+        },
+        {
+          "nombre": "Resid. T.Ballester",
+          "distancia": 66,
+          "lineas": [
+            "3",
+            "5"
+          ]
+        },
+        {
+          "nombre": "Av. de Navarra, 27",
+          "distancia": 84,
+          "lineas": [
+            "3A",
+            "5"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "3A",
+        "5",
+        "6",
+        "6A"
+      ]
+    },
+    "gazteka": {
+      "paradas": [
+        {
+          "nombre": "San Andrés, 121",
+          "distancia": 86,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Juana de Vega",
+          "distancia": 98,
+          "lineas": [
+            "3",
+            "7",
+            "21"
+          ]
+        },
+        {
+          "nombre": "Pontevedra,IESGuarda",
+          "distancia": 146,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11",
+            "22"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "21",
+        "22",
+        "BUH"
+      ]
+    },
+    "we-sustainability-cafe": {
+      "paradas": [
+        {
+          "nombre": "P.Marítimo,Salesiano",
+          "distancia": 132,
+          "lineas": [
+            "3A",
+            "11"
+          ]
+        },
+        {
+          "nombre": "San Andrés, 33",
+          "distancia": 208,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "San Andres, Africano",
+          "distancia": 228,
+          "lineas": [
+            "4",
+            "5",
+            "6",
+            "6A",
+            "7",
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "BUH"
+      ]
+    }
+  }
+}

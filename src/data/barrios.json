@@ -1,0 +1,50 @@
+{
+  "ciudad-vieja": {
+    "nombre": "Ciudad Vieja",
+    "aparcamiento": {
+      "dificultad": 3,
+      "nota": "Calles estrechas, plazas de residentes y zona ORA en los alrededores. Mejor dejar el coche en un parking y subir andando.",
+      "parkings": ["Parking Marina", "Parking Parrote"]
+    }
+  },
+  "centro": {
+    "nombre": "Centro y Pescadería",
+    "aparcamiento": {
+      "dificultad": 3,
+      "nota": "Zona peatonal y de ORA casi en su totalidad. En fin de semana por la noche es muy difícil encontrar sitio en la calle.",
+      "parkings": ["Parking Marina", "Parking Plaza de Pontevedra"]
+    }
+  },
+  "ensanche": {
+    "nombre": "Ensanche",
+    "aparcamiento": {
+      "dificultad": 2,
+      "nota": "Hay plazas en la calle, pero casi todas con ORA en horario comercial. Fuera de ese horario suele haber hueco tras dar alguna vuelta.",
+      "parkings": ["Parking Plaza de Lugo", "Parking Plaza de Pontevedra"]
+    }
+  },
+  "monte-alto": {
+    "nombre": "Monte Alto",
+    "aparcamiento": {
+      "dificultad": 2,
+      "nota": "Barrio residencial denso. Se encuentra sitio en la calle con paciencia, más fácil hacia la Torre de Hércules.",
+      "parkings": []
+    }
+  },
+  "los-rosales": {
+    "nombre": "Los Rosales",
+    "aparcamiento": {
+      "dificultad": 1,
+      "nota": "Calles anchas y sin ORA. Normalmente se aparca sin problema cerca de la puerta.",
+      "parkings": []
+    }
+  },
+  "monelos": {
+    "nombre": "Monelos",
+    "aparcamiento": {
+      "dificultad": 2,
+      "nota": "Avenida con mucho tráfico; se suele encontrar sitio en las calles traseras.",
+      "parkings": []
+    }
+  }
+}

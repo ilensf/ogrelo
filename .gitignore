@@ -1,0 +1,7 @@
+node_modules
+dist
+.astro
+.vercel
+.DS_Store
+# el proyecto usa pnpm (pnpm-lock.yaml)
+package-lock.json

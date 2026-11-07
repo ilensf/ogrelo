@@ -1,0 +1,298 @@
+@import '@fontsource/familjen-grotesk/400.css';
+@import '@fontsource/familjen-grotesk/500.css';
+@import '@fontsource/familjen-grotesk/600.css';
+@import '@fontsource/familjen-grotesk/700.css';
+
+/*
+  Paleta: blanco con un velo de menta, tinta gris azulada y verde fresco como acento.
+  Cada tipo de sitio tiene su propio color (clases .d-vegano, .d-vegetariano…),
+  de modo que veganos y vegetarianos se distinguen de un vistazo.
+  - mar: transporte
+  - xesta: avisos (aparcar difícil, datos por confirmar)
+*/
+:root {
+  --granito: #faf9f6;
+  --granito-hondo: #eeece6;
+  --papel: #ffffff;
+  --tinta: #1c2524;
+  --tinta-suave: #62696a;
+  --linea: #e5e3dc;
+
+  --acento: #16844a;
+  --acento-claro: #d8f3e3;
+  --sobre-acento: #ffffff;
+
+  --grelo: #16844a; /* "abierto", positivo */
+  --grelo-claro: #d8f3e3;
+  --grelo-vacio: #dad8d0;
+  --mar: #14607f;
+  --mar-claro: #d6e9f1;
+  --xesta: #95600a;
+  --xesta-claro: #f6e6b8;
+
+  /* tipos de sitio: fondo suave, texto y punto */
+  --c-vegano-f: #d3f4df;
+  --c-vegano-t: #0d6334;
+  --c-vegano-p: #25b76a;
+  --c-vegetariano-f: #f1f6c4;
+  --c-vegetariano-t: #566600;
+  --c-vegetariano-p: #a8c91f;
+  --c-carta-f: #d5eefa;
+  --c-carta-t: #0d5a7d;
+  --c-carta-p: #2fa8dc;
+  --c-opciones-f: #e8e4fa;
+  --c-opciones-t: #4a3a96;
+  --c-opciones-p: #7c6ae0;
+
+  /* hojas del medidor sobre fondo invertido (chips activos) */
+  --hoja-invertida: #ffffff;
+  --hoja-invertida-vacia: rgba(255, 255, 255, 0.35);
+
+  --fuente: 'Familjen Grotesk', system-ui, sans-serif;
+  --radio: 18px;
+  --radio-s: 12px;
+  --sombra: 0 1px 2px rgba(40, 35, 20, 0.05), 0 6px 18px rgba(40, 35, 20, 0.07);
+  --sombra-alta: 0 2px 4px rgba(40, 35, 20, 0.08), 0 16px 36px rgba(40, 35, 20, 0.16);
+  --alto-cabecera: 64px;
+  color-scheme: light;
+}
+
+/* Modo oscuro: lo fija el botón de la cabecera (data-theme); sin JS sigue al sistema */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --granito: #141615;
+    --granito-hondo: #212423;
+    --papel: #1b1e1d;
+    --tinta: #eef1ef;
+    --tinta-suave: #a6afac;
+    --linea: #2f3533;
+    --acento: #4fd08a;
+    --acento-claro: #1b4033;
+    --sobre-acento: #06251a;
+    --grelo: #4fd08a;
+    --grelo-claro: #1b4033;
+    --grelo-vacio: #3a403e;
+    --mar: #7fb7d1;
+    --mar-claro: #16323f;
+    --xesta: #e3b75a;
+    --xesta-claro: #3a2f16;
+    --c-vegano-f: #17402c;
+    --c-vegano-t: #8fe8b2;
+    --c-vegano-p: #3fcf84;
+    --c-vegetariano-f: #38400f;
+    --c-vegetariano-t: #d4ea6a;
+    --c-vegetariano-p: #b9d63a;
+    --c-carta-f: #143b4d;
+    --c-carta-t: #8ad3f2;
+    --c-carta-p: #43b3e6;
+    --c-opciones-f: #2b2757;
+    --c-opciones-t: #c3baf5;
+    --c-opciones-p: #9484ec;
+    --hoja-invertida: #1b1e1d;
+    --hoja-invertida-vacia: rgba(0, 0, 0, 0.3);
+    --sombra: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
+    --sombra-alta: 0 2px 4px rgba(0, 0, 0, 0.4), 0 16px 36px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+    --granito: #141615;
+    --granito-hondo: #212423;
+    --papel: #1b1e1d;
+    --tinta: #eef1ef;
+    --tinta-suave: #a6afac;
+    --linea: #2f3533;
+    --acento: #4fd08a;
+    --acento-claro: #1b4033;
+    --sobre-acento: #06251a;
+    --grelo: #4fd08a;
+    --grelo-claro: #1b4033;
+    --grelo-vacio: #3a403e;
+    --mar: #7fb7d1;
+    --mar-claro: #16323f;
+    --xesta: #e3b75a;
+    --xesta-claro: #3a2f16;
+    --c-vegano-f: #17402c;
+    --c-vegano-t: #8fe8b2;
+    --c-vegano-p: #3fcf84;
+    --c-vegetariano-f: #38400f;
+    --c-vegetariano-t: #d4ea6a;
+    --c-vegetariano-p: #b9d63a;
+    --c-carta-f: #143b4d;
+    --c-carta-t: #8ad3f2;
+    --c-carta-p: #43b3e6;
+    --c-opciones-f: #2b2757;
+    --c-opciones-t: #c3baf5;
+    --c-opciones-p: #9484ec;
+    --hoja-invertida: #1b1e1d;
+    --hoja-invertida-vacia: rgba(0, 0, 0, 0.3);
+    --sombra: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
+    --sombra-alta: 0 2px 4px rgba(0, 0, 0, 0.4), 0 16px 36px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+
+.d-vegano {
+  --d-fondo: var(--c-vegano-f);
+  --d-texto: var(--c-vegano-t);
+  --d-punto: var(--c-vegano-p);
+}
+.d-vegetariano {
+  --d-fondo: var(--c-vegetariano-f);
+  --d-texto: var(--c-vegetariano-t);
+  --d-punto: var(--c-vegetariano-p);
+}
+.d-carta-vegana {
+  --d-fondo: var(--c-carta-f);
+  --d-texto: var(--c-carta-t);
+  --d-punto: var(--c-carta-p);
+}
+.d-opciones {
+  --d-fondo: var(--c-opciones-f);
+  --d-texto: var(--c-opciones-t);
+  --d-punto: var(--c-opciones-p);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--fuente);
+  font-size: 106.25%; /* 17px */
+  line-height: 1.5;
+  color: var(--tinta);
+  background: var(--granito);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--granito);
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.1;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.contenedor {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 720px) {
+  .contenedor {
+    padding: 0 28px;
+  }
+}
+
+/* Botones y enlaces de acción */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  min-height: 46px;
+  padding: 0.5em 1.2em;
+  border-radius: 999px;
+  border: 1.5px solid var(--linea);
+  background: var(--papel);
+  color: var(--tinta);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.boton:hover {
+  border-color: var(--tinta-suave);
+  transform: translateY(-1px);
+}
+
+.boton--principal {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: var(--sobre-acento);
+}
+
+.boton--principal:hover {
+  border-color: var(--acento);
+  filter: brightness(1.07);
+}
+
+.boton[aria-disabled='true'] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Etiqueta de tipo de sitio */
+.etq {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.12em 0.65em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--d-texto);
+  background: var(--d-fondo);
+  border-radius: 999px;
+}
+.etq::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--d-punto);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Leaflet: marcadores propios */
+.marcador-veg {
+  background: none;
+  border: none;
+  overflow: visible;
+}

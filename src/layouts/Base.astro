@@ -1,0 +1,203 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+}
+const {
+  titulo,
+  descripcion = 'Restaurantes veganos, vegetarianos y con opciones vegetales en A Coruña: horarios, precios, cómo llegar en bus y dónde aparcar.',
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+const ruta = Astro.url.pathname.replace(/\/$/, '');
+const enAcerca = ruta.endsWith('/acerca');
+const canonica = new URL(Astro.url.pathname, Astro.site).href;
+const enInicio = ruta === base.replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={descripcion} />
+    <meta name="theme-color" content="#faf9f6" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>{titulo}</title>
+    <link rel="canonical" href={canonica} />
+    <meta property="og:site_name" content="Veggie Coruña" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta name="twitter:card" content="summary" />
+    <slot name="head" />
+    <script is:inline>
+      // Tema antes de pintar: el elegido por la persona o, si no, el del sistema.
+      try {
+        var t = localStorage.getItem('tema');
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="saltar visualmente-oculto" href="#contenido">Ir al contenido</a>
+    <header class="cabecera">
+      <div class="contenedor cabecera-fila">
+        <a class="marca" href={base} aria-label="Veggie Coruña, inicio">
+          <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+            <path d="M16 3C9 9 6 15 8 22c1.5 5 5 7 8 7s6.5-2 8-7c2-7-1-13-8-19z" fill="var(--grelo)" />
+            <path d="M16 9v19" stroke="var(--granito)" stroke-width="1.8" fill="none" />
+          </svg>
+          <span class="marca-texto">Veggie Coruña</span>
+        </a>
+        <nav aria-label="Principal">
+          <a href={base} aria-current={enInicio ? 'page' : undefined}>Restaurantes</a>
+          <a href={`${base}acerca/`} aria-current={enAcerca ? 'page' : undefined}>Cómo se hace</a>
+          <button type="button" class="tema" id="alternar-tema" aria-label="Cambiar entre modo claro y oscuro" title="Cambiar entre modo claro y oscuro">
+            <svg class="icono-luna" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.7 14.5A8.5 8.5 0 0 1 9.5 3.3a9 9 0 1 0 11.2 11.2z" /></svg>
+            <svg class="icono-sol" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor" /><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v2.5M12 19.500V22M2 12h2.500M19.500 12H22M4.900 4.900l1.800 1.800M17.300 17.300l1.800 1.800M4.900 19.100l1.800-1.800M17.300 6.700l1.800-1.800" /></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main id="contenido">
+      <slot />
+    </main>
+    <footer class="pie">
+      <div class="contenedor pie-rejilla">
+        <p>
+          Datos revisados en noviembre de 2026 a partir de HappyCow, prensa local y las propias webs de los locales. Horarios y
+          cartas cambian: llama antes de ir.
+        </p>
+        <p>Mapa © colaboradores de OpenStreetMap. <a href={`${base}acerca/`}>Cómo se hace esta guía</a>.</p>
+      </div>
+    </footer>
+    <script is:inline>
+      document.getElementById('alternar-tema')?.addEventListener('click', function () {
+        var nuevo = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = nuevo;
+        try { localStorage.setItem('tema', nuevo); } catch (e) {}
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .saltar:focus {
+    position: fixed !important;
+    top: 8px;
+    left: 8px;
+    width: auto;
+    height: auto;
+    clip: auto;
+    padding: 0.5em 1em;
+    background: var(--tinta);
+    color: var(--papel);
+    z-index: 2000;
+    border-radius: 999px;
+  }
+  .cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: color-mix(in srgb, var(--granito) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--linea);
+  }
+  .cabecera-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--alto-cabecera);
+    gap: 1rem;
+  }
+  .marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    gap: 0.25rem;
+  }
+  nav a {
+    padding: 0.45em 0.95em;
+    border-radius: 999px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  nav a:hover {
+    background: var(--granito-hondo);
+  }
+  nav a[aria-current='page'] {
+    background: var(--acento-claro);
+    color: var(--acento);
+    font-weight: 600;
+  }
+  .tema {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 0.25rem;
+    color: var(--tinta);
+    background: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .tema:hover {
+    border-color: var(--tinta-suave);
+  }
+  /* se muestra el icono del modo al que se cambiará */
+  .icono-sol {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .icono-sol {
+    display: block;
+  }
+  :global(:root[data-theme='dark']) .icono-luna {
+    display: none;
+  }
+  nav a {
+    white-space: nowrap;
+  }
+  @media (max-width: 480px) {
+    .marca-texto {
+      display: none;
+    }
+    nav a {
+      padding: 0.4em 0.7em;
+      font-size: 0.92rem;
+    }
+  }
+  .pie {
+    border-top: 1px solid var(--linea);
+    padding: 1.75rem 0 2.5rem;
+    font-size: 0.88rem;
+    color: var(--tinta-suave);
+  }
+  .pie-rejilla {
+    display: grid;
+    gap: 0.5rem;
+  }
+  @media (min-width: 820px) {
+    .pie-rejilla {
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+    }
+  }
+  .pie a {
+    color: var(--tinta);
+  }
+</style>
