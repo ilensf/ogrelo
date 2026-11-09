@@ -63,12 +63,35 @@ function icono(p: PuntoMapa, activo: boolean, etiqueta: boolean) {
   });
 }
 
-function iconoGrupo(n: number) {
+const COLOR_DIETA: Record<Dieta, string> = {
+  vegano: 'var(--c-vegano-p)',
+  vegetariano: 'var(--c-vegetariano-p)',
+  'carta-vegana': 'var(--c-carta-p)',
+  'buenas-opciones': 'var(--c-opciones-p)',
+  'alguna-opcion': 'var(--c-alguna-p)',
+};
+
+/** Anillo con un tramo de color por cada tipo de sitio, proporcional a cuántos hay en el grupo. */
+function anilloGrupo(items: PuntoMapa[]) {
+  let acumulado = 0;
+  const tramos = DIETAS.flatMap((d) => {
+    const n = items.filter((p) => p.dieta === d).length;
+    if (!n) return [];
+    const inicio = (acumulado / items.length) * 360;
+    acumulado += n;
+    return `${COLOR_DIETA[d]} ${inicio}deg ${(acumulado / items.length) * 360}deg`;
+  });
+  return `conic-gradient(${tramos.join(', ')})`;
+}
+
+function iconoGrupo(items: PuntoMapa[]) {
+  const n = items.length;
+  const lado = n < 5 ? 34 : n < 15 ? 38 : 42;
   return L!.divIcon({
     className: 'marcador-veg',
-    html: `<span class="grupo-pin">${n}</span>`,
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
+    html: `<span class="grupo-pin" style="background:${anilloGrupo(items)}"><span>${n}</span></span>`,
+    iconSize: [lado, lado],
+    iconAnchor: [lado / 2, lado / 2],
   });
 }
 
@@ -122,7 +145,7 @@ function dibujar() {
       const lat = items.reduce((s, p) => s + p.lat, 0) / items.length;
       const lng = items.reduce((s, p) => s + p.lng, 0) / items.length;
       const m = L.marker([lat, lng], {
-        icon: iconoGrupo(items.length),
+        icon: iconoGrupo(items),
         title: t.mapa.grupo(items.length, items.map((p) => p.nombre).join(', ')),
         riseOnHover: true,
       }).addTo(capa);
@@ -374,16 +397,22 @@ onBeforeUnmount(() => {
 }
 :deep(.grupo-pin) {
   display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
   border-radius: 50%;
-  font: 700 1rem/1 var(--fuente);
-  color: var(--papel);
-  background: var(--tinta);
-  border: 3px solid color-mix(in srgb, var(--papel) 85%, transparent);
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--tinta) 22%, transparent), 0 2px 8px rgba(25, 22, 15, 0.35);
+  box-shadow: 0 0 0 1.5px var(--papel), 0 2px 6px rgba(25, 22, 15, 0.3);
   transition: transform 0.15s ease;
+}
+:deep(.grupo-pin > span) {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font: 700 0.86rem/1 var(--fuente);
+  font-variant-numeric: tabular-nums;
+  color: var(--tinta);
+  background: var(--papel);
 }
 :deep(.marcador-veg:hover .grupo-pin) {
   transform: scale(1.1);
