@@ -1,0 +1,10 @@
+---
+import PaginaDirectorio from '../components/PaginaDirectorio.astro';
+import { obtenerCiudades } from '../lib/datos';
+
+export function getStaticPaths() {
+  return obtenerCiudades().map((c) => ({ params: { ciudad: c.id } }));
+}
+---
+
+<PaginaDirectorio idioma="gl" ciudadActual={Astro.params.ciudad} />

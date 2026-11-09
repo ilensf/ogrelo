@@ -1,0 +1,8 @@
+{
+  "ciudad-vieja": { "nombre": "Cidade Vella", "nota": "Rúas estreitas, prazas de residentes e zona ORA nos arredores. Mellor deixar o coche nun aparcadoiro e subir camiñando." },
+  "centro": { "nombre": "Centro e Pescadaría", "nota": "Zona peonil e de ORA case na súa totalidade. A fin de semana pola noite é moi difícil atopar sitio na rúa." },
+  "ensanche": { "nombre": "Ensanche", "nota": "Hai prazas na rúa, pero case todas con ORA en horario comercial. Fóra dese horario adoita haber oco tras dar algunha volta." },
+  "monte-alto": { "nombre": "Monte Alto", "nota": "Barrio residencial denso. Atópase sitio na rúa con paciencia, máis doado cara á Torre de Hércules." },
+  "los-rosales": { "nombre": "Os Rosales", "nota": "Rúas anchas e sen ORA. Normalmente apárcase sen problema preto da porta." },
+  "monelos": { "nombre": "Monelos", "nota": "Avenida con moito tráfico; adoita atoparse sitio nas rúas traseiras." }
+}

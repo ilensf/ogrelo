@@ -1,0 +1,13 @@
+---
+import PaginaFicha from '../../../components/PaginaFicha.astro';
+import { obtenerRestaurantes } from '../../../lib/datos';
+import type { RestauranteVista } from '../../../lib/tipos';
+
+export function getStaticPaths() {
+  return obtenerRestaurantes('es').map((r) => ({ params: { id: r.id }, props: { r } }));
+}
+
+const { r } = Astro.props as { r: RestauranteVista };
+---
+
+<PaginaFicha idioma="es" r={r} />

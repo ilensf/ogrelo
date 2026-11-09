@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { DIETAS } from '../lib/etiquetas';
+import { textos, type Idioma } from '../i18n';
+import { NIVEL_DIETA } from '../lib/etiquetas';
 import type { Dieta } from '../lib/tipos';
 
-// El medidor vegetal: tres hojas que se llenan según cuánto de la carta es vegetal.
-const props = withDefaults(defineProps<{ dieta: Dieta; tamano?: 's' | 'm' | 'l'; conTexto?: boolean }>(), {
+// El medidor vegetal: cuatro hojas que se llenan según cuánto de la carta es vegetal.
+const props = withDefaults(defineProps<{ dieta: Dieta; idioma: Idioma; tamano?: 's' | 'm' | 'l'; conTexto?: boolean }>(), {
   tamano: 'm',
   conTexto: false,
 });
 
-const info = computed(() => DIETAS[props.dieta]);
+const info = computed(() => ({ ...textos(props.idioma).dietas[props.dieta], nivel: NIVEL_DIETA[props.dieta] }));
 </script>
 
 <template>
   <span class="medidor" :class="`medidor--${tamano}`" :title="`${info.nombre}: ${info.descripcion}`">
     <span class="hojas" aria-hidden="true">
-      <span v-for="n in 3" :key="n" class="hoja" :class="{ llena: n <= info.nivel }" />
+      <span v-for="n in 4" :key="n" class="hoja" :class="{ llena: n <= info.nivel }" />
     </span>
     <span :class="conTexto ? 'texto' : 'visualmente-oculto'">{{ info.nombre }}</span>
   </span>

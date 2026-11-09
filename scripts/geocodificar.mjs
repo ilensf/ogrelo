@@ -10,7 +10,8 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const RUTA = new URL('../src/data/restaurantes.json', import.meta.url);
-const UA = 'veggiecoruna-guia/0.1 (proyecto personal)';
+const ciudades = JSON.parse(readFileSync(new URL('../src/data/ciudades.json', import.meta.url), 'utf8'));
+const UA = 'ogrelo-guia/0.1 (proyecto personal)';
 const todos = process.argv.includes('--todos');
 const espera = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -22,7 +23,8 @@ for (const r of restaurantes) {
 
   // Quitamos aclaraciones entre paréntesis para no confundir al geocodificador
   const direccion = r.direccion.replace(/\(.*?\)/g, '').replace(/\s+,/g, ',');
-  const consulta = direccion.includes('Coruña') ? direccion : `${direccion}, A Coruña`;
+  const ciudad = ciudades[r.ciudad].nombre;
+  const consulta = direccion.includes(ciudad) ? direccion : `${direccion}, ${ciudad}`;
   const url = new URL('https://nominatim.openstreetmap.org/search');
   url.search = new URLSearchParams({ q: consulta, format: 'jsonv2', limit: '1', countrycodes: 'es', addressdetails: '1' });
 

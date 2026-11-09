@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import Directorio from './Directorio.vue';
+import { raizIdioma, textos, type Idioma } from '../i18n';
+import { obtenerCiudades, obtenerRestaurantes } from '../lib/datos';
+
+interface Props {
+  idioma: Idioma;
+  /** Clave de la ciudad; sin ella, la página muestra toda Galicia. */
+  ciudadActual?: string;
+}
+const { idioma, ciudadActual } = Astro.props;
+const t = textos(idioma);
+const raiz = raizIdioma(import.meta.env.BASE_URL, idioma);
+const ciudades = obtenerCiudades();
+const restaurantes = obtenerRestaurantes(idioma, ciudadActual);
+const nombreCiudad = ciudades.find((c) => c.id === ciudadActual)?.nombre;
+const lugar = nombreCiudad ? t.enLugar(nombreCiudad) : '';
+
+const titulo = nombreCiudad ? t.ciudad.titulo(lugar) : t.portada.titulo;
+const descripcion = nombreCiudad ? t.ciudad.descripcion(lugar) : undefined;
+const encabezado = nombreCiudad ? t.ciudad.encabezado(lugar) : t.portada.encabezado;
+---
+
+<Base idioma={idioma} titulo={titulo} descripcion={descripcion}>
+  <div class="contenedor pantalla">
+    <div class="encabezado">
+      <h1>{encabezado}</h1>
+      <p>{t.portada.subtitulo}</p>
+    </div>
+    {
+      ciudades.length > 1 && (
+        <nav class="ciudades" aria-label={t.portada.ciudades}>
+          <a href={raiz} aria-current={ciudadActual ? undefined : 'page'}>{t.portada.todaGalicia}</a>
+          {ciudades.map((c) => (
+            <a href={`${raiz}${c.id}/`} aria-current={c.id === ciudadActual ? 'page' : undefined}>{c.nombre}</a>
+          ))}
+        </nav>
+      )
+    }
+    <Directorio client:load restaurantes={restaurantes} base={raiz} idioma={idioma} />
+  </div>
+</Base>
+
+<style>
+  .pantalla {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    /* la aplicación ocupa la ventana: la lista y el mapa tienen su propio desplazamiento */
+    height: calc(100dvh - var(--alto-cabecera));
+    min-height: 560px;
+  }
+  .encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15rem 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: clamp(1.3rem, 3.2vw, 2rem);
+    letter-spacing: -0.035em;
+  }
+  .encabezado p {
+    color: var(--tinta-suave);
+  }
+  .ciudades {
+    display: flex;
+    flex: none;
+    gap: 0.35rem;
+    margin-bottom: 0.65rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .ciudades a {
+    flex: none;
+    padding: 0.25em 0.8em;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid var(--linea);
+    border-radius: 999px;
+    background: var(--papel);
+  }
+  .ciudades a:hover {
+    border-color: var(--tinta-suave);
+  }
+  .ciudades a[aria-current='page'] {
+    background: var(--acento-claro);
+    border-color: var(--acento);
+    color: var(--acento);
+    font-weight: 600;
+  }
+  @media (max-width: 720px) {
+    .encabezado p {
+      display: none;
+    }
+  }
+</style>

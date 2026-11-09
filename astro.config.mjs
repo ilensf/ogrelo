@@ -5,5 +5,5 @@ import vue from '@astrojs/vue';
 export default defineConfig({
   integrations: [vue()],
   // Dominio de producción (sirve para el sitemap y las URLs canónicas).
-  site: 'https://veggiecoruna.vercel.app',
+  site: 'https://ogrelo.es',
 });

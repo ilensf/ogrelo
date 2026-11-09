@@ -2,19 +2,16 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import Mapa from './Mapa.vue';
 import type { PuntoMapa } from './Mapa.vue';
-import { DIETAS, NOMBRE_DIA, PRECIOS, SERVICIOS } from '../lib/etiquetas';
-import { ahoraEnCoruna, estadoAhora, type Estado } from '../lib/horario';
+import { etiquetaCocina, textos, type Idioma } from '../i18n';
+import { DIETAS, SERVICIOS } from '../lib/etiquetas';
+import { ahoraLocal, estadoAhora, type Estado } from '../lib/horario';
 import type { Dieta, RestauranteVista, Servicio } from '../lib/tipos';
 
-const props = defineProps<{ restaurantes: RestauranteVista[]; base: string }>();
+const props = defineProps<{ restaurantes: RestauranteVista[]; base: string; idioma: Idioma }>();
+const t = textos(props.idioma);
 
 type Orden = 'recomendado' | 'abierto' | 'nota' | 'nombre';
-const ORDENES: [Orden, string][] = [
-  ['recomendado', 'Recomendados'],
-  ['abierto', 'Abiertos primero'],
-  ['nota', 'Mejor valorados'],
-  ['nombre', 'Nombre (A-Z)'],
-];
+const ORDENES: Orden[] = ['recomendado', 'abierto', 'nota', 'nombre'];
 
 // --- Filtros ---------------------------------------------------------------
 const texto = ref('');
@@ -34,7 +31,6 @@ const enfoque = ref<{ id: string; n: number } | null>(null);
 const ahora = ref<Date | null>(null);
 let reloj: ReturnType<typeof setInterval> | undefined;
 
-const ordenDietas: Dieta[] = ['vegano', 'vegetariano', 'carta-vegana', 'opciones'];
 const conteoDieta = computed(() => {
   const c: Record<string, number> = {};
   for (const r of props.restaurantes) c[r.dieta] = (c[r.dieta] ?? 0) + 1;
@@ -43,13 +39,18 @@ const conteoDieta = computed(() => {
 
 const barrios = computed(() => {
   const m = new Map<string, string>();
-  for (const r of props.restaurantes) m.set(r.barrio, r.barrioNombre);
-  return [...m.entries()].sort((a, b) => a[1].localeCompare(b[1], 'es'));
+  for (const r of props.restaurantes) if (r.barrio && r.barrioNombre) m.set(r.barrio, r.barrioNombre);
+  return [...m.entries()].sort((a, b) => a[1].localeCompare(b[1], props.idioma));
 });
+const variasCiudades = computed(() => new Set(props.restaurantes.map((r) => r.ciudad)).size > 1);
+const lugar = (r: RestauranteVista) => (variasCiudades.value ? r.ciudadNombre : (r.barrioNombre ?? r.ciudadNombre));
+/** «Alguna opción» sale oculta por defecto, salvo donde no haya nada mejor. */
+const ocultarAlguna = computed(() => props.restaurantes.some((r) => r.dieta !== 'alguna-opcion'));
 const cocinas = computed(() =>
-  [...new Set(props.restaurantes.flatMap((r) => r.cocina))].sort((a, b) => a.localeCompare(b, 'es')),
+  [...new Set(props.restaurantes.flatMap((r) => r.cocina))].sort((a, b) =>
+    etiquetaCocina(t, a).localeCompare(etiquetaCocina(t, b), props.idioma),
+  ),
 );
-const serviciosDisponibles = Object.entries(SERVICIOS) as [Servicio, string][];
 
 const normalizar = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
 
@@ -64,13 +65,18 @@ const filtrados = computed(() => {
   const q = normalizar(texto.value.trim());
   return props.restaurantes.filter((r) => {
     if (q) {
-      const pajar = normalizar([r.nombre, r.resumen, r.cocina.join(' '), r.destacados.join(' '), r.barrioNombre].join(' '));
+      const cocinas = r.cocina.flatMap((c) => [c, etiquetaCocina(t, c)]).join(' ');
+      const pajar = normalizar([r.nombre, r.resumen, cocinas, r.destacados.join(' '), r.barrioNombre ?? '', r.ciudadNombre].join(' '));
       if (!pajar.includes(q)) return false;
     }
-    if (dietas.value.length && !dietas.value.includes(r.dieta)) return false;
+    if (dietas.value.length) {
+      if (!dietas.value.includes(r.dieta)) return false;
+    } else if (!q && ocultarAlguna.value && r.dieta === 'alguna-opcion') {
+      return false;
+    }
     if (barrio.value && r.barrio !== barrio.value) return false;
     if (cocina.value && !r.cocina.includes(cocina.value)) return false;
-    if (precioMax.value && r.precio > precioMax.value) return false;
+    if (precioMax.value && (!r.precio || r.precio > precioMax.value)) return false;
     if (servicios.value.some((s) => !r.servicios.includes(s))) return false;
     if (soloAbiertos.value && ahora.value && !estados.value[r.id]?.abierto) return false;
     return true;
@@ -85,7 +91,7 @@ const visibles = computed(() => {
   const l = [...filtrados.value];
   if (orden.value === 'abierto' && ahora.value) l.sort((a, b) => Number(!!estados.value[b.id]?.abierto) - Number(!!estados.value[a.id]?.abierto));
   else if (orden.value === 'nota') l.sort((a, b) => puntuacion(b) - puntuacion(a));
-  else if (orden.value === 'nombre') l.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+  else if (orden.value === 'nombre') l.sort((a, b) => a.nombre.localeCompare(b.nombre, props.idioma));
   return l;
 });
 
@@ -156,12 +162,10 @@ function fichaUrl(id: string) {
 function textoEstado(id: string): string {
   const e = estados.value[id];
   if (!e || !ahora.value) return '';
-  if (e.abierto) return `Abierto, cierra a las ${e.cierra}`;
-  if (!e.abre || !e.diaAbre) return 'Horario sin confirmar';
-  const hoy = ahoraEnCoruna(ahora.value).dia;
-  return e.diaAbre === hoy
-    ? `Cerrado, abre a las ${e.abre}`
-    : `Cerrado, abre el ${NOMBRE_DIA[e.diaAbre].toLowerCase()} a las ${e.abre}`;
+  if (e.abierto) return t.horario.abierto(e.cierra);
+  if (!e.abre || !e.diaAbre) return t.sinHorario;
+  const hoy = ahoraLocal(ahora.value).dia;
+  return e.diaAbre === hoy ? t.horario.cerradoHoy(e.abre) : t.horario.cerradoDia(t.dias[e.diaAbre].toLowerCase(), e.abre);
 }
 
 const nota = (r: RestauranteVista) => r.valoraciones[0];
@@ -170,14 +174,14 @@ const nota = (r: RestauranteVista) => r.valoraciones[0];
 function leerUrl() {
   const p = new URLSearchParams(location.search);
   texto.value = p.get('q') ?? '';
-  dietas.value = (p.get('dieta')?.split(',').filter(Boolean) ?? []) as Dieta[];
+  dietas.value = (p.get('dieta')?.split(',') ?? []).filter((d): d is Dieta => DIETAS.includes(d as Dieta));
   barrio.value = p.get('barrio') ?? '';
   cocina.value = p.get('cocina') ?? '';
   precioMax.value = (Number(p.get('precio')) || 0) as 0 | 1 | 2 | 3;
   servicios.value = (p.get('servicios')?.split(',').filter(Boolean) ?? []) as Servicio[];
   soloAbiertos.value = p.get('abierto') === '1';
   const o = p.get('orden') as Orden | null;
-  orden.value = ORDENES.some(([k]) => k === o) ? o! : 'recomendado';
+  orden.value = o && ORDENES.includes(o) ? o : 'recomendado';
 }
 function escribirUrl() {
   const p = new URLSearchParams();
@@ -216,8 +220,8 @@ onBeforeUnmount(() => {
         <form class="buscador" role="search" @submit.prevent>
           <svg class="lupa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 1 0 4.9 14.3l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" /></svg>
           <label>
-            <span class="visualmente-oculto">Buscar un plato, un sitio o un barrio</span>
-            <input v-model="texto" type="search" placeholder="Croquetas, ramen, Orzán…" />
+            <span class="visualmente-oculto">{{ t.directorio.buscarEtiqueta }}</span>
+            <input v-model="texto" type="search" :placeholder="t.directorio.buscarEjemplo" />
           </label>
         </form>
         <button
@@ -228,12 +232,12 @@ onBeforeUnmount(() => {
           @click="hojaAbierta = !hojaAbierta"
         >
           <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 5h18v2H3V5zm4 6h10v2H7v-2zm3 6h4v2h-4v-2z" /></svg>
-          Filtros
+          {{ t.directorio.filtros }}
           <span v-if="numExtras" class="insignia">{{ numExtras }}</span>
         </button>
       </div>
 
-      <div class="chips" role="group" aria-label="Tipo de sitio">
+      <div class="chips" role="group" :aria-label="t.directorio.tipoSitio">
         <button
           type="button"
           class="chip chip--abierto"
@@ -242,77 +246,77 @@ onBeforeUnmount(() => {
           @click="soloAbiertos = !soloAbiertos"
         >
           <span class="vivo" aria-hidden="true"></span>
-          Abierto ahora<span v-if="ahora" class="cuenta">{{ abiertosAhora }}</span>
+          {{ t.directorio.abiertoAhora }}<span v-if="ahora" class="cuenta">{{ abiertosAhora }}</span>
         </button>
         <span class="separador" aria-hidden="true"></span>
         <button
-          v-for="d in ordenDietas.filter((x) => conteoDieta[x])"
+          v-for="d in DIETAS.filter((x) => conteoDieta[x])"
           :key="d"
           type="button"
           class="chip chip--dieta"
           :class="`d-${d}`"
           :aria-pressed="dietas.includes(d)"
-          :title="DIETAS[d].descripcion"
+          :title="t.dietas[d].descripcion"
           @click="dietas = alternar(dietas, d)"
         >
           <span class="punto" aria-hidden="true"></span>
-          {{ DIETAS[d].nombre }}
+          {{ t.dietas[d].nombre }}
           <span class="cuenta">{{ conteoDieta[d] }}</span>
         </button>
       </div>
 
       <template v-if="hojaAbierta">
         <div class="telon" @click="hojaAbierta = false"></div>
-        <div id="hoja-filtros" class="hoja" role="dialog" aria-label="Más filtros">
+        <div id="hoja-filtros" class="hoja" role="dialog" :aria-label="t.directorio.masFiltros">
           <div class="hoja-cabecera">
-            <h2>Filtros</h2>
-            <button type="button" class="cerrar" aria-label="Cerrar filtros" @click="hojaAbierta = false">
+            <h2>{{ t.directorio.filtros }}</h2>
+            <button type="button" class="cerrar" :aria-label="t.directorio.cerrarFiltros" @click="hojaAbierta = false">
               <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z" /></svg>
             </button>
           </div>
           <div class="fila-selects">
-            <label>
-              <span>Barrio</span>
+            <label v-if="barrios.length > 1">
+              <span>{{ t.directorio.barrio }}</span>
               <select v-model="barrio">
-                <option value="">Toda la ciudad</option>
+                <option value="">{{ t.directorio.todosBarrios }}</option>
                 <option v-for="[id, nombre] in barrios" :key="id" :value="id">{{ nombre }}</option>
               </select>
             </label>
             <label>
-              <span>Cocina</span>
+              <span>{{ t.directorio.cocina }}</span>
               <select v-model="cocina">
-                <option value="">Cualquiera</option>
-                <option v-for="c in cocinas" :key="c" :value="c">{{ c[0].toUpperCase() + c.slice(1) }}</option>
+                <option value="">{{ t.directorio.cualquiera }}</option>
+                <option v-for="c in cocinas" :key="c" :value="c">{{ etiquetaCocina(t, c) }}</option>
               </select>
             </label>
             <label>
-              <span>Precio</span>
+              <span>{{ t.directorio.precio }}</span>
               <select v-model.number="precioMax">
-                <option :value="0">Cualquiera</option>
-                <option :value="1">Solo económicos (€)</option>
-                <option :value="2">Hasta precio medio (€€)</option>
+                <option :value="0">{{ t.directorio.cualquiera }}</option>
+                <option :value="1">{{ t.directorio.soloEconomicos }}</option>
+                <option :value="2">{{ t.directorio.hastaMedio }}</option>
               </select>
             </label>
           </div>
           <fieldset class="grupo">
-            <legend>Necesito</legend>
+            <legend>{{ t.directorio.necesito }}</legend>
             <div class="chips">
               <button
-                v-for="[sv, nombre] in serviciosDisponibles"
+                v-for="sv in SERVICIOS"
                 :key="sv"
                 type="button"
                 class="chip"
                 :aria-pressed="servicios.includes(sv)"
                 @click="servicios = alternar(servicios, sv)"
               >
-                {{ nombre }}
+                {{ t.servicios[sv] }}
               </button>
             </div>
           </fieldset>
           <div class="hoja-pie">
-            <button type="button" class="enlace" :disabled="!hayFiltros" @click="limpiar">Quitar todos los filtros</button>
+            <button type="button" class="enlace" :disabled="!hayFiltros" @click="limpiar">{{ t.directorio.quitarTodos }}</button>
             <button type="button" class="boton boton--principal" @click="hojaAbierta = false">
-              Ver {{ filtrados.length }} {{ filtrados.length === 1 ? 'sitio' : 'sitios' }}
+              {{ t.directorio.ver(filtrados.length) }}
             </button>
           </div>
         </div>
@@ -324,13 +328,13 @@ onBeforeUnmount(() => {
         <div class="lista-cabecera">
           <p aria-live="polite">
             <strong>{{ filtrados.length }}</strong>
-            {{ filtrados.length === 1 ? 'sitio' : 'sitios' }}<template v-if="filtrados.length !== restaurantes.length"> de {{ restaurantes.length }}</template>
-            <button v-if="hayFiltros" type="button" class="enlace" @click="limpiar">Quitar filtros</button>
+            {{ t.directorio.sitios(filtrados.length) }}<template v-if="hayFiltros && filtrados.length !== restaurantes.length"> {{ t.directorio.de }} {{ restaurantes.length }}</template>
+            <button v-if="hayFiltros" type="button" class="enlace" @click="limpiar">{{ t.directorio.quitar }}</button>
           </p>
           <label class="orden">
-            <span class="visualmente-oculto">Ordenar por</span>
+            <span class="visualmente-oculto">{{ t.directorio.ordenar }}</span>
             <select v-model="orden">
-              <option v-for="[k, nombre] in ORDENES" :key="k" :value="k" :disabled="k === 'abierto' && !ahora">{{ nombre }}</option>
+              <option v-for="k in ORDENES" :key="k" :value="k" :disabled="k === 'abierto' && !ahora">{{ t.directorio.orden[k] }}</option>
             </select>
           </label>
         </div>
@@ -353,11 +357,11 @@ onBeforeUnmount(() => {
               <span class="fila-texto">
                 <span class="fila-nombre">{{ r.nombre }}</span>
                 <span class="fila-meta">
-                  {{ r.cocina.map((c) => c[0].toUpperCase() + c.slice(1)).join(', ') }} · {{ r.barrioNombre }} ·
-                  <span :title="PRECIOS[r.precio]">{{ '€'.repeat(r.precio) }}</span>
+                  {{ r.cocina.map((c) => etiquetaCocina(t, c)).join(', ') }} · {{ lugar(r) }}
+                  <span v-if="r.precio" :title="t.precios[r.precio]">· {{ '€'.repeat(r.precio) }}</span>
                 </span>
                 <span class="fila-pie">
-                  <span class="etq">{{ DIETAS[r.dieta].corto }}</span>
+                  <span class="etq">{{ t.dietas[r.dieta].corto }}</span>
                   <span
                     v-if="ahora"
                     class="estado"
@@ -365,32 +369,30 @@ onBeforeUnmount(() => {
                   >{{ textoEstado(r.id) }}</span>
                 </span>
               </span>
-              <span v-if="nota(r)" class="nota-chip" :title="`${nota(r).fuente}: ${nota(r).nota.toLocaleString('es')} de ${nota(r).max}`">
-                ★ {{ nota(r).nota.toLocaleString('es') }}
+              <span v-if="nota(r)" class="nota-chip" :title="t.directorio.notaFuente(nota(r).fuente, nota(r).nota.toLocaleString(idioma), nota(r).max)">
+                ★ {{ nota(r).nota.toLocaleString(idioma) }}
               </span>
             </a>
             <button v-if="r.coords" type="button" class="localizar" @click="verEnMapa(r.id)">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
-              <span class="visualmente-oculto">Ver {{ r.nombre }} en el mapa</span>
+              <span class="visualmente-oculto">{{ t.directorio.verEnMapa(r.nombre) }}</span>
             </button>
           </li>
           <li v-if="filtrados.length === 0" class="vacio">
-            <p>Ningún sitio cumple todos esos filtros.</p>
-            <button type="button" class="boton" @click="limpiar">Quitar filtros</button>
+            <p>{{ t.directorio.vacio }}</p>
+            <button type="button" class="boton" @click="limpiar">{{ t.directorio.quitar }}</button>
           </li>
         </ol>
       </div>
 
       <div id="mapa" class="panel-mapa">
-        <Mapa :puntos="puntos" :resaltado="resaltado" :enfocar="enfoque" @seleccionar="seleccionarDesdeMapa" />
-        <p v-if="sinUbicar" class="nota-mapa">
-          {{ sinUbicar }} {{ sinUbicar === 1 ? 'sitio aún no tiene' : 'sitios aún no tienen' }} ubicación en el mapa.
-        </p>
+        <Mapa :puntos="puntos" :idioma="idioma" :resaltado="resaltado" :enfocar="enfoque" @seleccionar="seleccionarDesdeMapa" />
+        <p v-if="sinUbicar" class="nota-mapa">{{ t.directorio.sinUbicar(sinUbicar) }}</p>
       </div>
 
-      <div class="conmutador" role="group" aria-label="Vista">
-        <button type="button" :aria-pressed="vistaMovil === 'lista'" @click="vistaMovil = 'lista'">Lista</button>
-        <button type="button" :aria-pressed="vistaMovil === 'mapa'" @click="vistaMovil = 'mapa'">Mapa</button>
+      <div class="conmutador" role="group" :aria-label="t.directorio.vista">
+        <button type="button" :aria-pressed="vistaMovil === 'lista'" @click="vistaMovil = 'lista'">{{ t.directorio.lista }}</button>
+        <button type="button" :aria-pressed="vistaMovil === 'mapa'" @click="vistaMovil = 'mapa'">{{ t.directorio.mapa }}</button>
       </div>
     </div>
   </section>

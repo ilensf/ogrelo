@@ -1,0 +1,419 @@
+---
+import Base from '../layouts/Base.astro';
+import Medidor from './Medidor.vue';
+import Mapa from './Mapa.vue';
+import EstadoAhora from './EstadoAhora.vue';
+import { etiquetaCocina, raizIdioma, textos, type Idioma } from '../i18n';
+import { formatearTelefono, fuenteTransporte } from '../lib/datos';
+import { DIAS } from '../lib/etiquetas';
+import { formatearFranjas } from '../lib/horario';
+import type { RestauranteVista } from '../lib/tipos';
+
+interface Props {
+  r: RestauranteVista;
+  idioma: Idioma;
+}
+const { r, idioma } = Astro.props;
+const t = textos(idioma);
+const raiz = raizIdioma(import.meta.env.BASE_URL, idioma);
+const lugar = t.enLugar(r.ciudadNombre);
+const fuenteBus = fuenteTransporte(r.ciudad, idioma);
+const tieneHorario = Object.keys(r.horario).length > 0;
+const destino = encodeURIComponent(`${r.nombre}, ${r.direccion}`);
+const rutaBus = `https://www.google.com/maps/dir/?api=1&destination=${destino}&travelmode=transit`;
+const DIA_SCHEMA = { lun: 'Monday', mar: 'Tuesday', mie: 'Wednesday', jue: 'Thursday', vie: 'Friday', sab: 'Saturday', dom: 'Sunday' } as const;
+const datosEstructurados = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: r.nombre,
+  description: r.resumen,
+  servesCuisine: r.cocina,
+  ...(r.precio && { priceRange: '€'.repeat(r.precio) }),
+  address: { '@type': 'PostalAddress', streetAddress: r.direccion, addressLocality: r.ciudadNombre, addressCountry: 'ES' },
+  ...(r.telefono && { telephone: r.telefono }),
+  ...(r.web && { url: r.web }),
+  ...(r.coords && { geo: { '@type': 'GeoCoordinates', latitude: r.coords.lat, longitude: r.coords.lng } }),
+  openingHoursSpecification: DIAS.flatMap((d) =>
+    (r.horario[d] ?? []).map(([abre, cierra]) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: DIA_SCHEMA[d],
+      opens: abre,
+      ...(cierra && { closes: cierra }),
+    })),
+  ),
+};
+---
+
+<Base idioma={idioma} titulo={t.ficha.titulo(r.nombre, lugar)} descripcion={r.resumen}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(datosEstructurados).replace(/</g, '\\u003c')} />
+  <div class={`contenedor ficha d-${r.dieta}`}>
+    <a class="volver" href={`${raiz}${r.ciudad}/`}>
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M20 11H7.800l5.600-5.600L12 4l-8 8 8 8 1.400-1.400L7.800 13H20z" /></svg>
+      {t.ficha.volver(lugar)}
+    </a>
+
+    <header class="ficha-cabecera">
+      <div class={`dieta d-${r.dieta}`}>
+        <Medidor dieta={r.dieta} idioma={idioma} tamano="l" />
+        <div>
+          <p class="dieta-nombre">{t.dietas[r.dieta].nombre}</p>
+          <p class="dieta-desc">{t.dietas[r.dieta].descripcion}</p>
+        </div>
+      </div>
+      <h1>{r.nombre}</h1>
+      <p class="meta">
+        {r.cocina.map((c) => etiquetaCocina(t, c)).join(', ')}. {[r.barrioNombre, r.ciudadNombre].filter(Boolean).join(', ')}. {r.precio && <>{t.precios[r.precio]} ({'€'.repeat(r.precio)}).</>}
+      </p>
+      <EstadoAhora client:load horario={r.horario} idioma={idioma} />
+    </header>
+
+    <div class="acciones">
+      {
+        r.telefono && (
+          <a class="boton boton--principal" href={`tel:${r.telefono}`}>
+            {t.ficha.llamar} {formatearTelefono(r.telefono)}
+          </a>
+        )
+      }
+      {r.web && <a class="boton" href={r.web} rel="noopener" target="_blank">{t.ficha.web}</a>}
+      {r.carta && r.carta !== r.web && <a class="boton" href={r.carta} rel="noopener" target="_blank">{t.ficha.verCarta}</a>}
+      <a class="boton" href={r.enlaceMaps} rel="noopener" target="_blank">{t.ficha.abrirMaps}</a>
+    </div>
+
+    <div class="rejilla">
+      <section class="bloque bloque--ancho">
+        <p class="resumen">{r.resumen}</p>
+        {
+          r.destacados.length > 0 && (
+            <>
+              <h2>{t.ficha.quePedir}</h2>
+              <ul class="destacados">
+                {r.destacados.map((d) => (
+                  <li>{d}</li>
+                ))}
+              </ul>
+            </>
+          )
+        }
+        {r.servicios.length > 0 && <p class="servicios">{r.servicios.map((s) => t.servicios[s]).join(', ')}.</p>}
+      </section>
+
+      <section class="bloque">
+        <h2>{t.ficha.horario}</h2>
+        {
+          tieneHorario ? (
+            <table class="horario">
+              <tbody>
+                {DIAS.map((d) => (
+                  <tr data-dia={d}>
+                    <th scope="row">{t.dias[d]}</th>
+                    <td>{formatearFranjas(r.horario[d], t)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p class="tenue">{t.sinHorario}.</p>
+          )
+        }
+      </section>
+
+      <section class="bloque">
+        <h2>{t.ficha.resenas}</h2>
+        {
+          r.valoraciones.length > 0 ? (
+            <ul class="notas">
+              {r.valoraciones.map((v) => (
+                <li>
+                  <span class="nota">{v.nota.toLocaleString(idioma)}</span>
+                  <span>
+                    {t.ficha.notaEn(v.max, v.fuente)}
+                    {v.resenas && <> {t.ficha.numResenas(v.resenas)}</>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="tenue">{t.ficha.sinNota}</p>
+          )
+        }
+        <p class="enlaces-resenas">
+          {t.ficha.leerOpiniones} <a href={r.enlaceMaps} rel="noopener" target="_blank">Google Maps</a>
+          {
+            r.enlaces.happycow && (
+              <>
+                {' '}{t.ficha.o} <a href={r.enlaces.happycow} rel="noopener" target="_blank">HappyCow</a>
+              </>
+            )
+          }.
+        </p>
+        {r.precioNota && <p class="tenue">{r.precioNota}.</p>}
+      </section>
+
+      <section class="bloque">
+        <h2>{t.ficha.enBus}</h2>
+        {
+          r.bus && r.bus.paradas.length > 0 ? (
+            <ul class="paradas">
+              {r.bus.paradas.map((p) => (
+                <li>
+                  <span class="lineas">
+                    {p.lineas.map((l) => (
+                      <span class="linea">{l}</span>
+                    ))}
+                  </span>
+                  <span>
+                    {t.ficha.aMetros(p.nombre, p.distancia)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="tenue">
+              {!r.coords
+                ? t.ficha.sinUbicarBus
+                : fuenteBus
+                  ? t.ficha.sinParadas
+                  : t.ficha.sinDatosBus}
+            </p>
+          )
+        }
+        <a class="boton" href={rutaBus} rel="noopener" target="_blank">{t.ficha.rutaBus}</a>
+        {fuenteBus && <p class="fuente">{t.ficha.fuente} {fuenteBus}.</p>}
+      </section>
+
+      {
+        r.aparcamiento && (
+          <section class="bloque">
+            <h2>{t.ficha.enCoche}</h2>
+            <p class={`aparcar aparcar--${r.aparcamiento.dificultad}`}>
+              {t.ficha.aparcar} {t.aparcar[r.aparcamiento.dificultad].toLowerCase()}
+            </p>
+            <p>{r.aparcamiento.nota}</p>
+            {r.aparcamiento.parkings.length > 0 && (
+              <p class="tenue">{t.ficha.parkings} {r.aparcamiento.parkings.join(', ')}.</p>
+            )}
+            <p class="fuente">{t.ficha.estimacion}</p>
+          </section>
+        )
+      }
+
+      <section class="bloque bloque--ancho bloque--mapa">
+        <h2>{t.ficha.dondeEsta}</h2>
+        <p>{r.direccion}</p>
+        {
+          r.coords ? (
+            <>
+              <div class="mini-mapa">
+                <Mapa
+                  client:visible
+                  idioma={idioma}
+                  puntos={[{ id: r.id, nombre: r.nombre, dieta: r.dieta, lat: r.coords.lat, lng: r.coords.lng, exactas: r.coords.exactas }]}
+                  resaltado={r.id}
+                  zoom={16}
+                />
+              </div>
+              {!r.coords.exactas && <p class="tenue">{t.ficha.aproximada}</p>}
+            </>
+          ) : (
+            <p class="tenue">{t.ficha.sinMapa}</p>
+          )
+        }
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .ficha {
+    padding-top: 1.5rem;
+  }
+  .volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 1.25rem;
+    padding: 0.5em 1em;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: 999px;
+    box-shadow: var(--sombra);
+    transition: transform 0.15s;
+  }
+  .volver:hover {
+    transform: translateX(-3px);
+  }
+  .ficha-cabecera {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 52rem;
+  }
+  .ficha-cabecera :global(.hoja) {
+    background: var(--grelo-vacio);
+  }
+  .ficha-cabecera :global(.hoja.llena) {
+    background: var(--d-punto);
+  }
+  .dieta {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .dieta-nombre {
+    font-weight: 700;
+    color: var(--d-texto);
+  }
+  .dieta-desc {
+    font-size: 0.9rem;
+    color: var(--tinta-suave);
+  }
+  h1 {
+    font-size: clamp(2.3rem, 6.5vw, 4.2rem);
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+  .meta {
+    font-size: 1.1rem;
+    color: var(--tinta-suave);
+  }
+  .acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .rejilla {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 820px) {
+    .rejilla {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .bloque--ancho {
+      grid-column: 1 / -1;
+    }
+  }
+  .bloque {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    justify-items: start;
+    padding: 1.5rem;
+    background: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    box-shadow: none;
+  }
+  .bloque > * {
+    max-width: 68ch;
+  }
+  h2 {
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+  .resumen {
+    font-size: 1.15rem;
+  }
+  .destacados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .destacados li {
+    padding: 0.25em 0.75em;
+    border-radius: 999px;
+    background: var(--d-fondo);
+    color: var(--d-texto);
+    font-weight: 500;
+  }
+  .servicios,
+  .tenue,
+  .fuente {
+    color: var(--tinta-suave);
+  }
+  .fuente {
+    font-size: 0.85rem;
+  }
+  .horario {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .horario th,
+  .horario td {
+    padding: 0.35rem 0;
+    text-align: left;
+    border-bottom: 1px solid var(--linea);
+  }
+  .horario th {
+    font-weight: 500;
+    width: 40%;
+  }
+  .horario :global(tr.hoy) {
+    font-weight: 700;
+  }
+  .horario :global(tr.hoy th)::after {
+    content: ' (hoy)';
+    font-weight: 400;
+    color: var(--tinta-suave);
+  }
+  .notas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .notas li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .nota {
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .paradas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .paradas li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .lineas {
+    display: inline-flex;
+    gap: 0.25rem;
+  }
+  .linea {
+    min-width: 2.2em;
+    padding: 0.1em 0.4em;
+    text-align: center;
+    font-weight: 700;
+    color: var(--papel);
+    background: var(--mar);
+    border-radius: 8px;
+  }
+  .aparcar {
+    font-weight: 700;
+  }
+  .aparcar--3 {
+    color: var(--xesta);
+  }
+  .bloque--mapa {
+    justify-items: stretch;
+  }
+  .mini-mapa {
+    height: 340px;
+    max-width: none;
+  }
+</style>

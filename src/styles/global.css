@@ -43,6 +43,9 @@
   --c-opciones-f: #e8e4fa;
   --c-opciones-t: #4a3a96;
   --c-opciones-p: #7c6ae0;
+  --c-alguna-f: #ebe9e3;
+  --c-alguna-t: #55585a;
+  --c-alguna-p: #9a9c98;
 
   /* hojas del medidor sobre fondo invertido (chips activos) */
   --hoja-invertida: #ffffff;
@@ -88,6 +91,9 @@
     --c-opciones-f: #2b2757;
     --c-opciones-t: #c3baf5;
     --c-opciones-p: #9484ec;
+    --c-alguna-f: #2c302e;
+    --c-alguna-t: #c4cac7;
+    --c-alguna-p: #8b928f;
     --hoja-invertida: #1b1e1d;
     --hoja-invertida-vacia: rgba(0, 0, 0, 0.3);
     --sombra: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
@@ -125,6 +131,9 @@
     --c-opciones-f: #2b2757;
     --c-opciones-t: #c3baf5;
     --c-opciones-p: #9484ec;
+    --c-alguna-f: #2c302e;
+    --c-alguna-t: #c4cac7;
+    --c-alguna-p: #8b928f;
     --hoja-invertida: #1b1e1d;
     --hoja-invertida-vacia: rgba(0, 0, 0, 0.3);
     --sombra: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
@@ -147,10 +156,15 @@
   --d-texto: var(--c-carta-t);
   --d-punto: var(--c-carta-p);
 }
-.d-opciones {
+.d-buenas-opciones {
   --d-fondo: var(--c-opciones-f);
   --d-texto: var(--c-opciones-t);
   --d-punto: var(--c-opciones-p);
+}
+.d-alguna-opcion {
+  --d-fondo: var(--c-alguna-f);
+  --d-texto: var(--c-alguna-t);
+  --d-punto: var(--c-alguna-p);
 }
 
 *,

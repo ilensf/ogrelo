@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import type { LayerGroup, Map as LMap, Marker, TileLayer } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { textos, type Idioma } from '../i18n';
 import { DIETAS } from '../lib/etiquetas';
 import type { Dieta } from '../lib/tipos';
 
@@ -18,6 +19,7 @@ export interface PuntoMapa {
 const props = withDefaults(
   defineProps<{
     puntos: PuntoMapa[];
+    idioma: Idioma;
     resaltado?: string | null;
     zoom?: number;
     interactivo?: boolean;
@@ -27,16 +29,17 @@ const props = withDefaults(
   { resaltado: null, zoom: 15, interactivo: true, enfocar: null },
 );
 const emit = defineEmits<{ seleccionar: [id: string] }>();
+const t = textos(props.idioma);
 
 const contenedor = ref<HTMLElement | null>(null);
-const dietasPresentes = computed(() => (Object.keys(DIETAS) as Dieta[]).filter((d) => props.puntos.some((p) => p.dieta === d)));
+const dietasPresentes = computed(() => DIETAS.filter((d) => props.puntos.some((p) => p.dieta === d)));
 let mapa: LMap | null = null;
 let L: typeof import('leaflet') | null = null;
 let capa: LayerGroup | null = null;
 let teselas: TileLayer | null = null;
 const marcadores = new Map<string, Marker>();
 
-const CENTRO_CORUNA: [number, number] = [43.3665, -8.406];
+const CENTRO_GALICIA: [number, number] = [42.8, -8.0];
 /** Distancia en píxeles bajo la cual dos sitios se agrupan en un solo círculo. */
 const RADIO_AGRUPAR = 36;
 /** Desde este zoom no se agrupa nada: los sitios muy próximos ya se distinguen. */
@@ -70,9 +73,9 @@ function iconoGrupo(n: number) {
 }
 
 function popup(p: PuntoMapa) {
-  const aviso = p.exactas ? '' : '<span class="pop-aviso">Ubicación aproximada</span>';
-  const enlace = p.url ? `<a class="pop-enlace" href="${p.url}">Ver ficha →</a>` : '';
-  return `<strong>${escapar(p.nombre)}</strong><span class="pop-dieta d-${p.dieta}">${DIETAS[p.dieta].nombre}</span>${aviso}${enlace}`;
+  const aviso = p.exactas ? '' : `<span class="pop-aviso">${t.mapa.aproximada}</span>`;
+  const enlace = p.url ? `<a class="pop-enlace" href="${p.url}">${t.mapa.verFicha}</a>` : '';
+  return `<strong>${escapar(p.nombre)}</strong><span class="pop-dieta d-${p.dieta}">${t.dietas[p.dieta].nombre}</span>${aviso}${enlace}`;
 }
 
 /** Agrupa por cercanía en pantalla (a este zoom) los sitios que se pisarían. */
@@ -120,7 +123,7 @@ function dibujar() {
       const lng = items.reduce((s, p) => s + p.lng, 0) / items.length;
       const m = L.marker([lat, lng], {
         icon: iconoGrupo(items.length),
-        title: `${items.length} sitios: ${items.map((p) => p.nombre).join(', ')}`,
+        title: t.mapa.grupo(items.length, items.map((p) => p.nombre).join(', ')),
         riseOnHover: true,
       }).addTo(capa);
       m.on('click', () => {
@@ -166,8 +169,8 @@ onMounted(async () => {
   L = await import('leaflet');
   if (!contenedor.value) return;
   mapa = L.map(contenedor.value, {
-    center: CENTRO_CORUNA,
-    zoom: props.zoom,
+    center: CENTRO_GALICIA,
+    zoom: 8,
     zoomSnap: 0.5,
     scrollWheelZoom: props.interactivo,
     wheelPxPerZoomLevel: 100,
@@ -238,12 +241,12 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="envoltorio">
-    <div ref="contenedor" class="mapa" role="region" aria-label="Mapa de restaurantes"></div>
+    <div ref="contenedor" class="mapa" role="region" :aria-label="t.mapa.region"></div>
     <button v-if="interactivo && puntos.length > 1" type="button" class="reencuadrar" @click="reencuadrar">
-      Ver todos
+      {{ t.mapa.verTodos }}
     </button>
-    <ul v-if="interactivo" class="leyenda" aria-label="Leyenda del mapa">
-      <li v-for="d in dietasPresentes" :key="d" :class="`d-${d}`"><span class="punto"></span>{{ DIETAS[d].corto }}</li>
+    <ul v-if="interactivo" class="leyenda" :aria-label="t.mapa.leyenda">
+      <li v-for="d in dietasPresentes" :key="d" :class="`d-${d}`"><span class="punto"></span>{{ t.dietas[d].corto }}</li>
     </ul>
   </div>
 </template>

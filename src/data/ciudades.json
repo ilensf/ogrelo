@@ -1,0 +1,44 @@
+{
+  "a-coruna": {
+    "nombre": "A Coruña",
+    "provincia": "A Coruña",
+    "centro": { "lat": 43.3623, "lng": -8.4115 },
+    "gtfs": { "url": "https://files.mobilitydatabase.org/mdb-2767/latest.zip", "fuente": { "es": "GTFS de la Compañía de Tranvías de La Coruña", "gl": "GTFS da Compañía de Tranvías de La Coruña" } }
+  },
+  "santiago": {
+    "nombre": "Santiago de Compostela",
+    "provincia": "A Coruña",
+    "centro": { "lat": 42.8782, "lng": -8.5448 },
+    "gtfs": null
+  },
+  "ferrol": {
+    "nombre": "Ferrol",
+    "provincia": "A Coruña",
+    "centro": { "lat": 43.484, "lng": -8.233 },
+    "gtfs": null
+  },
+  "vigo": {
+    "nombre": "Vigo",
+    "provincia": "Pontevedra",
+    "centro": { "lat": 42.2406, "lng": -8.7207 },
+    "gtfs": null
+  },
+  "pontevedra": {
+    "nombre": "Pontevedra",
+    "provincia": "Pontevedra",
+    "centro": { "lat": 42.431, "lng": -8.6444 },
+    "gtfs": null
+  },
+  "ourense": {
+    "nombre": "Ourense",
+    "provincia": "Ourense",
+    "centro": { "lat": 42.3358, "lng": -7.8639 },
+    "gtfs": { "url": "https://files.mobilitydatabase.org/mdb-2804/latest.zip", "fuente": { "es": "GTFS del bus urbano de Ourense (Avanza)", "gl": "GTFS do autobús urbano de Ourense (Avanza)" } }
+  },
+  "lugo": {
+    "nombre": "Lugo",
+    "provincia": "Lugo",
+    "centro": { "lat": 43.0097, "lng": -7.5567 },
+    "gtfs": null
+  }
+}

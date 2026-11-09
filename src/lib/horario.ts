@@ -1,13 +1,14 @@
 import type { Dia, Franja } from './tipos';
 import { DIAS } from './etiquetas';
+import type { Textos } from '../i18n';
 
 const aMin = (h: string) => {
   const [hh, mm] = h.split(':').map(Number);
   return hh * 60 + mm;
 };
 
-/** Hora local de A Coruña, sea cual sea la zona del navegador. */
-export function ahoraEnCoruna(fecha = new Date()): { dia: Dia; minutos: number } {
+/** Hora local de Galicia, sea cual sea la zona del navegador. */
+export function ahoraLocal(fecha = new Date()): { dia: Dia; minutos: number } {
   const partes = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Europe/Madrid',
     weekday: 'short',
@@ -34,7 +35,7 @@ export type Estado =
 
 /** ¿Está abierto ahora? Tiene en cuenta franjas que cruzan la medianoche. */
 export function estadoAhora(horario: Partial<Record<Dia, Franja[]>>, fecha = new Date()): Estado {
-  const { dia, minutos } = ahoraEnCoruna(fecha);
+  const { dia, minutos } = ahoraLocal(fecha);
 
   for (const [ini, fin] of horario[dia] ?? []) {
     const a = aMin(ini);
@@ -61,7 +62,7 @@ export function estadoAhora(horario: Partial<Record<Dia, Franja[]>>, fecha = new
   return { abierto: false, abre: null, diaAbre: null };
 }
 
-export function formatearFranjas(franjas: Franja[] | undefined): string {
-  if (!franjas || franjas.length === 0) return 'Cerrado';
-  return franjas.map(([a, c]) => `${a}–${c}`).join(' y ');
+export function formatearFranjas(franjas: Franja[] | undefined, t: Textos): string {
+  if (!franjas || franjas.length === 0) return t.horario.cerrado;
+  return franjas.map(([a, c]) => `${a}–${c}`).join(t.horario.y);
 }

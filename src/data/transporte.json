@@ -1,7 +1,10 @@
 {
   "_info": "Generado por `npm run data:transporte`. No editar a mano.",
-  "generado": "2026-11-07T01:54:51.051Z",
-  "fuente": "GTFS de la Compañía de Tranvías de La Coruña",
+  "generado": "2026-11-09T14:54:18.376Z",
+  "fuentes": {
+    "a-coruna": "GTFS de la Compañía de Tranvías de La Coruña",
+    "ourense": "GTFS del bus urbano de Ourense (Avanza)"
+  },
   "restaurantes": {
     "la-cuchara-veggie": {
       "paradas": [
@@ -1179,6 +1182,920 @@
         "7",
         "11",
         "BUH"
+      ]
+    },
+    "lamizan-ourense": {
+      "paradas": [
+        {
+          "nombre": "AVDA PORTUGAL Nº100",
+          "distancia": 56,
+          "lineas": [
+            "21"
+          ]
+        },
+        {
+          "nombre": "NICOMEDES PASTOR DIAZ",
+          "distancia": 149,
+          "lineas": [
+            "10",
+            "C17"
+          ]
+        },
+        {
+          "nombre": "MARCELO MACIAS Nº 3",
+          "distancia": 155,
+          "lineas": [
+            "7",
+            "10",
+            "21",
+            "C17"
+          ]
+        }
+      ],
+      "lineas": [
+        "7",
+        "10",
+        "21",
+        "C17"
+      ]
+    },
+    "toxo-ourense": {
+      "paradas": [
+        {
+          "nombre": "BEDOYA",
+          "distancia": 104,
+          "lineas": [
+            "5"
+          ]
+        },
+        {
+          "nombre": "PRAZA DO FERRO",
+          "distancia": 213,
+          "lineas": [
+            "19"
+          ]
+        },
+        {
+          "nombre": "AVDA. HABANA Nº 87",
+          "distancia": 256,
+          "lineas": [
+            "18",
+            "C17"
+          ]
+        }
+      ],
+      "lineas": [
+        "5",
+        "18",
+        "19",
+        "C17"
+      ]
+    },
+    "tea-nature-ourense": {
+      "paradas": [
+        {
+          "nombre": "BEDOYA",
+          "distancia": 104,
+          "lineas": [
+            "5"
+          ]
+        },
+        {
+          "nombre": "PRAZA DO FERRO",
+          "distancia": 213,
+          "lineas": [
+            "19"
+          ]
+        },
+        {
+          "nombre": "AVDA. HABANA Nº 87",
+          "distancia": 256,
+          "lineas": [
+            "18",
+            "C17"
+          ]
+        }
+      ],
+      "lineas": [
+        "5",
+        "18",
+        "19",
+        "C17"
+      ]
+    },
+    "portovello-ourense": {
+      "paradas": [
+        {
+          "nombre": "PRAZA DO FERRO",
+          "distancia": 93,
+          "lineas": [
+            "19"
+          ]
+        },
+        {
+          "nombre": "AVDA. BOS AIRES Nº 30",
+          "distancia": 222,
+          "lineas": [
+            "5"
+          ]
+        },
+        {
+          "nombre": "NUÑO DE OUSENDE Nº 1",
+          "distancia": 293,
+          "lineas": [
+            "18"
+          ]
+        }
+      ],
+      "lineas": [
+        "5",
+        "18",
+        "19"
+      ]
+    },
+    "comecaminos-ourense": {
+      "paradas": [
+        {
+          "nombre": "BEDOYA",
+          "distancia": 81,
+          "lineas": [
+            "5"
+          ]
+        },
+        {
+          "nombre": "AVDA. HABANA Nº 69",
+          "distancia": 136,
+          "lineas": [
+            "5",
+            "18",
+            "C17"
+          ]
+        },
+        {
+          "nombre": "PARQUE SAN LAZARO",
+          "distancia": 179,
+          "lineas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6A",
+            "6B",
+            "7",
+            "9",
+            "10",
+            "11A",
+            "11B",
+            "12",
+            "13A",
+            "13B",
+            "14",
+            "15",
+            "16",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25A",
+            "25B",
+            "26",
+            "27",
+            "33",
+            "212",
+            "C17",
+            "CDO",
+            "COB",
+            "ESP"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6A",
+        "6B",
+        "7",
+        "9",
+        "10",
+        "11A",
+        "11B",
+        "12",
+        "13A",
+        "13B",
+        "14",
+        "15",
+        "16",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25A",
+        "25B",
+        "26",
+        "27",
+        "33",
+        "212",
+        "C17",
+        "CDO",
+        "COB",
+        "ESP"
+      ]
+    },
+    "sakura-ourense": {
+      "paradas": [
+        {
+          "nombre": "BEDOYA",
+          "distancia": 104,
+          "lineas": [
+            "5"
+          ]
+        },
+        {
+          "nombre": "PRAZA DO FERRO",
+          "distancia": 213,
+          "lineas": [
+            "19"
+          ]
+        },
+        {
+          "nombre": "AVDA. HABANA Nº 87",
+          "distancia": 256,
+          "lineas": [
+            "18",
+            "C17"
+          ]
+        }
+      ],
+      "lineas": [
+        "5",
+        "18",
+        "19",
+        "C17"
+      ]
+    },
+    "dashi-ramen-ourense": {
+      "paradas": [
+        {
+          "nombre": "PRAZA DO FERRO",
+          "distancia": 65,
+          "lineas": [
+            "19"
+          ]
+        },
+        {
+          "nombre": "ALAMEDA",
+          "distancia": 236,
+          "lineas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6A",
+            "6B",
+            "7",
+            "9",
+            "10",
+            "11A",
+            "11B",
+            "12",
+            "13A",
+            "13B",
+            "14",
+            "15",
+            "16",
+            "18",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25A",
+            "25B",
+            "26",
+            "27",
+            "33",
+            "212",
+            "C17",
+            "COB",
+            "ESP"
+          ]
+        },
+        {
+          "nombre": "AVDA. BOS AIRES Nº 30",
+          "distancia": 353,
+          "lineas": [
+            "5"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6A",
+        "6B",
+        "7",
+        "9",
+        "10",
+        "11A",
+        "11B",
+        "12",
+        "13A",
+        "13B",
+        "14",
+        "15",
+        "16",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25A",
+        "25B",
+        "26",
+        "27",
+        "33",
+        "212",
+        "C17",
+        "COB",
+        "ESP"
+      ]
+    },
+    "todo-bio-ourense": {
+      "paradas": [
+        {
+          "nombre": "PROGRESO",
+          "distancia": 115,
+          "lineas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6A",
+            "6B",
+            "7",
+            "9",
+            "10",
+            "11A",
+            "11B",
+            "12",
+            "13A",
+            "13B",
+            "14",
+            "15",
+            "16",
+            "18",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25A",
+            "25B",
+            "26",
+            "27",
+            "33",
+            "212",
+            "C17",
+            "COB",
+            "ESP"
+          ]
+        },
+        {
+          "nombre": "ERVEDELO Nº 1",
+          "distancia": 189,
+          "lineas": [
+            "5",
+            "21"
+          ]
+        },
+        {
+          "nombre": "PRAZA DO FERRO",
+          "distancia": 349,
+          "lineas": [
+            "19"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6A",
+        "6B",
+        "7",
+        "9",
+        "10",
+        "11A",
+        "11B",
+        "12",
+        "13A",
+        "13B",
+        "14",
+        "15",
+        "16",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25A",
+        "25B",
+        "26",
+        "27",
+        "33",
+        "212",
+        "C17",
+        "COB",
+        "ESP"
+      ]
+    },
+    "o-cogumelo-ourense": {
+      "paradas": [
+        {
+          "nombre": "PRAZA DO FERRO",
+          "distancia": 65,
+          "lineas": [
+            "19"
+          ]
+        },
+        {
+          "nombre": "ALAMEDA",
+          "distancia": 236,
+          "lineas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6A",
+            "6B",
+            "7",
+            "9",
+            "10",
+            "11A",
+            "11B",
+            "12",
+            "13A",
+            "13B",
+            "14",
+            "15",
+            "16",
+            "18",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25A",
+            "25B",
+            "26",
+            "27",
+            "33",
+            "212",
+            "C17",
+            "COB",
+            "ESP"
+          ]
+        },
+        {
+          "nombre": "AVDA. BOS AIRES Nº 30",
+          "distancia": 353,
+          "lineas": [
+            "5"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6A",
+        "6B",
+        "7",
+        "9",
+        "10",
+        "11A",
+        "11B",
+        "12",
+        "13A",
+        "13B",
+        "14",
+        "15",
+        "16",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25A",
+        "25B",
+        "26",
+        "27",
+        "33",
+        "212",
+        "C17",
+        "COB",
+        "ESP"
+      ]
+    },
+    "xes-ourense": {
+      "paradas": [
+        {
+          "nombre": "PRAZA DO FERRO",
+          "distancia": 74,
+          "lineas": [
+            "19"
+          ]
+        },
+        {
+          "nombre": "ALAMEDA",
+          "distancia": 206,
+          "lineas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6A",
+            "6B",
+            "7",
+            "9",
+            "10",
+            "11A",
+            "11B",
+            "12",
+            "13A",
+            "13B",
+            "14",
+            "15",
+            "16",
+            "18",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25A",
+            "25B",
+            "26",
+            "27",
+            "33",
+            "212",
+            "C17",
+            "COB",
+            "ESP"
+          ]
+        },
+        {
+          "nombre": "BEDOYA",
+          "distancia": 378,
+          "lineas": [
+            "5"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6A",
+        "6B",
+        "7",
+        "9",
+        "10",
+        "11A",
+        "11B",
+        "12",
+        "13A",
+        "13B",
+        "14",
+        "15",
+        "16",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25A",
+        "25B",
+        "26",
+        "27",
+        "33",
+        "212",
+        "C17",
+        "COB",
+        "ESP"
+      ]
+    },
+    "sibuya-ourense": {
+      "paradas": [
+        {
+          "nombre": "PRAZA MAIOR",
+          "distancia": 114,
+          "lineas": [
+            "19"
+          ]
+        },
+        {
+          "nombre": "ALAMEDA",
+          "distancia": 135,
+          "lineas": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6A",
+            "6B",
+            "7",
+            "9",
+            "10",
+            "11A",
+            "11B",
+            "12",
+            "13A",
+            "13B",
+            "14",
+            "15",
+            "16",
+            "18",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25A",
+            "25B",
+            "26",
+            "27",
+            "33",
+            "212",
+            "C17",
+            "COB",
+            "ESP"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "6A",
+        "6B",
+        "7",
+        "9",
+        "10",
+        "11A",
+        "11B",
+        "12",
+        "13A",
+        "13B",
+        "14",
+        "15",
+        "16",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25A",
+        "25B",
+        "26",
+        "27",
+        "33",
+        "212",
+        "C17",
+        "COB",
+        "ESP"
+      ]
+    },
+    "cafe-prifer-ourense": {
+      "paradas": [
+        {
+          "nombre": "MARCELO MACIAS Nº 43",
+          "distancia": 43,
+          "lineas": [
+            "7",
+            "10",
+            "C17"
+          ]
+        },
+        {
+          "nombre": "MARCELO MACIAS Nº 3",
+          "distancia": 197,
+          "lineas": [
+            "7",
+            "10",
+            "21",
+            "C17"
+          ]
+        },
+        {
+          "nombre": "POLVORIN",
+          "distancia": 227,
+          "lineas": [
+            "21",
+            "27"
+          ]
+        }
+      ],
+      "lineas": [
+        "7",
+        "10",
+        "21",
+        "27",
+        "C17"
+      ]
+    },
+    "devoto-estrella-coruna": {
+      "paradas": [
+        {
+          "nombre": "San Andrés, 121",
+          "distancia": 74,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Av. Mariña, Obelisco",
+          "distancia": 130,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3A",
+            "17",
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "Obelisco",
+          "distancia": 188,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "3",
+            "5",
+            "7",
+            "17",
+            "23",
+            "23A"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "3",
+        "3A",
+        "4",
+        "5",
+        "6",
+        "6A",
+        "7",
+        "11",
+        "17",
+        "23",
+        "23A",
+        "BUH"
+      ]
+    },
+    "vicio-coruna": {
+      "paradas": [
+        {
+          "nombre": "Área Comerc.Marineda",
+          "distancia": 219,
+          "lineas": [
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "11"
+      ]
+    },
+    "la-pepita-juan-florez-coruna": {
+      "paradas": [
+        {
+          "nombre": "Juan Flórez, 10",
+          "distancia": 105,
+          "lineas": [
+            "3",
+            "3A",
+            "20",
+            "22"
+          ]
+        },
+        {
+          "nombre": "Pza. de Galicia",
+          "distancia": 127,
+          "lineas": [
+            "4",
+            "11",
+            "21"
+          ]
+        },
+        {
+          "nombre": "Pza.de Pontevedra,11",
+          "distancia": 180,
+          "lineas": [
+            "4",
+            "6",
+            "6A",
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "3",
+        "3A",
+        "4",
+        "6",
+        "6A",
+        "11",
+        "20",
+        "21",
+        "22"
+      ]
+    },
+    "la-pepita-cuatro-caminos-coruna": {
+      "paradas": [
+        {
+          "nombre": "Ramón y Cajal",
+          "distancia": 123,
+          "lineas": [
+            "23",
+            "23A"
+          ]
+        },
+        {
+          "nombre": "Av. Oza, Río Monelos",
+          "distancia": 138,
+          "lineas": [
+            "2",
+            "2A",
+            "12",
+            "20",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Ramón y Cajal, 30",
+          "distancia": 158,
+          "lineas": [
+            "21",
+            "23",
+            "23A"
+          ]
+        }
+      ],
+      "lineas": [
+        "2",
+        "2A",
+        "12",
+        "20",
+        "21",
+        "23",
+        "23A",
+        "BUH"
+      ]
+    },
+    "la-pepita-marineda-coruna": {
+      "paradas": [
+        {
+          "nombre": "Área Comerc.Marineda",
+          "distancia": 219,
+          "lineas": [
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "11"
       ]
     }
   }

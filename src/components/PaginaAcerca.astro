@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import Medidor from './Medidor.vue';
+import { textos, type Idioma } from '../i18n';
+import { DIETAS } from '../lib/etiquetas';
+
+interface Props {
+  idioma: Idioma;
+}
+const { idioma } = Astro.props;
+const t = textos(idioma);
+---
+
+<Base idioma={idioma} titulo={t.acerca.titulo}>
+  <div class="contenedor texto">
+    <h1>{t.acerca.encabezado}</h1>
+
+    <p class="intro">{t.acerca.intro}</p>
+
+    <h2>{t.acerca.medidor}</h2>
+    <ul class="leyenda">
+      {
+        DIETAS.map((d) => (
+          <li class={`d-${d}`}>
+            <Medidor dieta={d} idioma={idioma} />
+            <span>
+              <strong>{t.dietas[d].nombre}.</strong> {t.dietas[d].descripcion}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+    <p>{t.acerca.reglas}</p>
+
+    <h2>{t.acerca.datos}</h2>
+    <p>{t.acerca.datosTexto}</p>
+    <p>{t.acerca.resenas}</p>
+
+    <h2>{t.acerca.busAparcar}</h2>
+    <p>{t.acerca.busAparcarTexto}</p>
+
+    <h2>{t.acerca.cerrados}</h2>
+    <p>{t.acerca.cerradosTexto}</p>
+  </div>
+</Base>
+
+<style>
+  .texto {
+    max-width: 46rem;
+    padding-top: 2.5rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    letter-spacing: -0.045em;
+    margin-bottom: 1.5rem;
+  }
+  h2 {
+    font-size: 1.35rem;
+    margin: 2rem 0 0.75rem;
+  }
+  .intro {
+    font-size: 1.15rem;
+    color: var(--tinta-suave);
+  }
+  p + p {
+    margin-top: 0.8rem;
+  }
+  .leyenda {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.8rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .leyenda li {
+    display: flex;
+    gap: 0.9rem;
+    align-items: baseline;
+  }
+</style>
