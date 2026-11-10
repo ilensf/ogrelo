@@ -20,6 +20,9 @@ const lugar = nombreCiudad ? t.enLugar(nombreCiudad) : '';
 const titulo = nombreCiudad ? t.ciudad.titulo(lugar) : t.portada.titulo;
 const descripcion = nombreCiudad ? t.ciudad.descripcion(lugar) : undefined;
 const encabezado = nombreCiudad ? t.ciudad.encabezado(lugar) : t.portada.encabezado;
+// Las fichas ocultas por defecto se enlazan aquí para que los buscadores también lleguen a ellas.
+const ocultas =
+  ciudadActual && restaurantes.some((r) => r.dieta !== 'alguna-opcion') ? restaurantes.filter((r) => r.dieta === 'alguna-opcion') : [];
 ---
 
 <Base idioma={idioma} titulo={titulo} descripcion={descripcion}>
@@ -40,6 +43,22 @@ const encabezado = nombreCiudad ? t.ciudad.encabezado(lugar) : t.portada.encabez
     }
     <Directorio client:load restaurantes={restaurantes} base={raiz} idioma={idioma} />
   </div>
+  {
+    ocultas.length > 0 && (
+      <section class="contenedor otros">
+        <h2>{t.ciudad.otros(lugar)}</h2>
+        <p>{t.dietas['alguna-opcion'].descripcion}</p>
+        <ul>
+          {ocultas.map((r) => (
+            <li>
+              <a href={`${raiz}restaurante/${r.id}/`}>{r.nombre}</a>
+              <span>{r.direccion.split(',')[0]}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 </Base>
 
 <style>
@@ -93,6 +112,31 @@ const encabezado = nombreCiudad ? t.ciudad.encabezado(lugar) : t.portada.encabez
     border-color: var(--acento);
     color: var(--acento);
     font-weight: 600;
+  }
+  .otros {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+  }
+  .otros h2 {
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+  .otros p {
+    margin: 0.3rem 0 1rem;
+    color: var(--tinta-suave);
+  }
+  .otros ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: 0.6rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .otros li span {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--tinta-suave);
   }
   @media (max-width: 720px) {
     .encabezado p {

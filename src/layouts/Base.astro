@@ -39,7 +39,11 @@ const canonica = absoluta(idioma);
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:url" content={canonica} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={new URL(`${base}og-${idioma}.png`, Astro.site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`O Grelo. ${t.portada.encabezado}`} />
+    <meta name="twitter:card" content="summary_large_image" />
     <slot name="head" />
     {
       idioma === IDIOMA_DEFECTO && (

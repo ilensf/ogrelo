@@ -31,6 +31,7 @@ export const es = {
     titulo: (lugar: string) => `Restaurantes veganos y vegetarianos ${lugar} | O Grelo`,
     descripcion: (lugar: string) => `Dónde comer vegano y vegetariano ${lugar}: horarios, precios, teléfono para reservar y cómo llegar.`,
     encabezado: (lugar: string) => `Dónde comer vegetariano y vegano ${lugar}`,
+    otros: (lugar: string) => `Otros sitios con alguna opción vegana ${lugar}`,
   },
   dietas: {
     vegano: { nombre: '100 % vegano', corto: 'Vegano', descripcion: 'Todo lo que sirven es vegetal.' },

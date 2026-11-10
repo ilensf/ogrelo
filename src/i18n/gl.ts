@@ -33,6 +33,7 @@ export const gl: Textos = {
     titulo: (lugar) => `Restaurantes veganos e vexetarianos ${lugar} | O Grelo`,
     descripcion: (lugar) => `Onde comer vegano e vexetariano ${lugar}: horarios, prezos, teléfono para reservar e como chegar.`,
     encabezado: (lugar) => `Onde comer vexetariano e vegano ${lugar}`,
+    otros: (lugar) => `Outros sitios con algunha opción vegana ${lugar}`,
   },
   dietas: {
     vegano: { nombre: '100 % vegano', corto: 'Vegano', descripcion: 'Todo o que serven é vexetal.' },
