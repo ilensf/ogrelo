@@ -59,6 +59,8 @@ const canonica = absoluta(idioma);
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
+    {/* Vercel Web Analytics: visitas anónimas y sin cookies. Solo existe en el despliegue de producción. */}
+    {import.meta.env.PROD && <script is:inline defer src="/_vercel/insights/script.js"></script>}
   </head>
   <body>
     <a class="saltar visualmente-oculto" href="#contenido">{t.sitio.saltar}</a>
