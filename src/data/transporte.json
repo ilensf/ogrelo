@@ -1,6 +1,6 @@
 {
   "_info": "Generado por `npm run data:transporte`. No editar a mano.",
-  "generado": "2026-11-12T14:44:54.228Z",
+  "generado": "2026-11-12T20:30:08.733Z",
   "fuentes": {
     "a-coruna": "GTFS de la Compañía de Tranvías de La Coruña",
     "ourense": "GTFS del bus urbano de Ourense (Avanza)",
@@ -3193,6 +3193,44 @@
         "N4",
         "PSA1",
         "PSA4"
+      ]
+    },
+    "mi-vaina-elvina-coruna": {
+      "paradas": [
+        {
+          "nombre": "S.Madariaga, mercado",
+          "distancia": 41,
+          "lineas": [
+            "1A",
+            "12A"
+          ]
+        },
+        {
+          "nombre": "S.Madariaga,gasolin.",
+          "distancia": 94,
+          "lineas": [
+            "1A",
+            "12A",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Paxariñas",
+          "distancia": 159,
+          "lineas": [
+            "20",
+            "24",
+            "UDC"
+          ]
+        }
+      ],
+      "lineas": [
+        "1A",
+        "12A",
+        "20",
+        "24",
+        "BUH",
+        "UDC"
       ]
     }
   }

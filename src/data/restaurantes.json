@@ -2302,7 +2302,7 @@
   },
   {
     "id": "mi-vaina-coruna",
-    "nombre": "Mi Vaina Vutcher",
+    "nombre": "Mi Vaina Vutcher · Av. Finisterre",
     "ciudad": "a-coruna",
     "dieta": "tienda-vegana",
     "cocina": ["carnicería vegana"],
@@ -2314,8 +2314,8 @@
     "precio": null,
     "precioNota": null,
     "horario": {
-      "lun": [["11:00", "14:00"], ["17:30", "20:30"]], "mar": [["11:00", "14:00"], ["17:30", "20:30"]], "mie": [["11:00", "14:00"], ["17:30", "20:30"]],
-      "jue": [["11:00", "14:00"], ["17:30", "20:30"]], "vie": [["11:00", "14:00"], ["17:30", "20:30"]], "sab": [["10:30", "14:00"]]
+      "mar": [["17:30", "20:30"]], "mie": [["17:30", "20:30"]], "jue": [["17:30", "20:30"]],
+      "vie": [["17:30", "20:30"]]
     },
     "destacados": ["Chorizo vegano", "Morcilla vegana", "Salchichas veganas", "Filetes vegetales"],
     "servicios": [],
@@ -2323,7 +2323,7 @@
     "enlaces": {},
     "borrador": true,
     "direccion": "Avenida de Finisterre, 137, bajo, 15001 A Coruña",
-    "resumen": "Carnicería vegana donde no se come, sino que se compra: salchichas, chorizo, morcilla y filetes de base vegetal para cocinar en casa."
+    "resumen": "Carnicería vegana donde no se come, sino que se compra: salchichas, chorizo, morcilla y filetes de base vegetal para cocinar en casa. También tiene puesto en el Mercado de Elviña."
   },
   {
     "id": "herbas-santiago",
@@ -2349,5 +2349,30 @@
     "borrador": true,
     "direccion": "Rúa dos Pitelos, 26, bajo, 15702 Santiago de Compostela",
     "resumen": "Pequeña tienda 100 % vegana con alimentación a granel, tofu, seitán, tés, cosmética natural y productos para el hogar. Tiene tienda online con envíos."
+  },
+  {
+    "id": "mi-vaina-elvina-coruna",
+    "nombre": "Mi Vaina Vutcher · Mercado de Elviña",
+    "ciudad": "a-coruna",
+    "dieta": "tienda-vegana",
+    "cocina": ["carnicería vegana"],
+    "barrio": null,
+    "coords": { "lat": 43.348201, "lng": -8.405508, "exactas": true },
+    "direccion": "Mercado de Elviña, puesto 43 (Avenida de Salvador de Madariaga, 9), 15008 A Coruña",
+    "telefono": "+34881129245",
+    "web": "https://www.instagram.com/mivaina.vutcher.shop",
+    "carta": null,
+    "precio": null,
+    "precioNota": null,
+    "horario": {
+      "mie": [["10:00", "14:00"]], "jue": [["10:00", "14:00"]], "vie": [["10:00", "14:00"]],
+      "sab": [["10:00", "14:00"]]
+    },
+    "resumen": "Puesto de la carnicería vegana Mi Vaina en el Mercado de Elviña: salchichas, chorizo, morcilla y filetes de base vegetal para cocinar en casa. También tiene local en la Avenida de Finisterre.",
+    "destacados": ["Chorizo vegano", "Morcilla vegana", "Salchichas veganas", "Filetes vegetales"],
+    "servicios": [],
+    "valoraciones": [],
+    "enlaces": {},
+    "borrador": true
   }
 ]
