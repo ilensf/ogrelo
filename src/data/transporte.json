@@ -1,9 +1,10 @@
 {
   "_info": "Generado por `npm run data:transporte`. No editar a mano.",
-  "generado": "2026-11-12T14:42:07.555Z",
+  "generado": "2026-11-12T14:44:54.228Z",
   "fuentes": {
     "a-coruna": "GTFS de la Compañía de Tranvías de La Coruña",
-    "ourense": "GTFS del bus urbano de Ourense (Avanza)"
+    "ourense": "GTFS del bus urbano de Ourense (Avanza)",
+    "vigo": "GTFS de Vitrasa (Concello de Vigo, ODC-BY)"
   },
   "restaurantes": {
     "la-cuchara-veggie": {
@@ -2134,6 +2135,1064 @@
         "14",
         "22",
         "BUH"
+      ]
+    },
+    "curcuma-vigo": {
+      "paradas": [
+        {
+          "nombre": "Avda. da Gran Vía  12",
+          "distancia": 59,
+          "lineas": [
+            "4A",
+            "4C",
+            "5B",
+            "7",
+            "12B",
+            "14",
+            "16",
+            "17",
+            "18A",
+            "18B",
+            "18H",
+            "C1",
+            "PSA4"
+          ]
+        },
+        {
+          "nombre": "Avda. da Gran Vía  19",
+          "distancia": 90,
+          "lineas": [
+            "4A",
+            "4C",
+            "5B",
+            "7",
+            "11",
+            "12B",
+            "14",
+            "16",
+            "17",
+            "18A",
+            "18B",
+            "18H",
+            "N1"
+          ]
+        },
+        {
+          "nombre": "Rúa de Urzáiz  60 - Est. Intermodal - C.C.",
+          "distancia": 102,
+          "lineas": [
+            "4A",
+            "4C",
+            "5A",
+            "9B",
+            "11",
+            "15B",
+            "15C",
+            "24",
+            "28",
+            "A",
+            "N1",
+            "N4"
+          ]
+        }
+      ],
+      "lineas": [
+        "4A",
+        "4C",
+        "5A",
+        "5B",
+        "7",
+        "9B",
+        "11",
+        "12B",
+        "14",
+        "15B",
+        "15C",
+        "16",
+        "17",
+        "18A",
+        "18B",
+        "18H",
+        "24",
+        "28",
+        "A",
+        "C1",
+        "N1",
+        "N4",
+        "PSA4"
+      ]
+    },
+    "verde-mostaza-vigo": {
+      "paradas": [
+        {
+          "nombre": "Praza de Compostela (fronte 35)",
+          "distancia": 102,
+          "lineas": [
+            "5A",
+            "5B",
+            "6",
+            "9B",
+            "10",
+            "11",
+            "15B",
+            "15C",
+            "28",
+            "A",
+            "C3i",
+            "H1",
+            "N1",
+            "N4"
+          ]
+        },
+        {
+          "nombre": "Praza de Compostela  2",
+          "distancia": 111,
+          "lineas": [
+            "5A",
+            "9B",
+            "10",
+            "15B",
+            "15C",
+            "28",
+            "A",
+            "C1",
+            "C3d",
+            "N4"
+          ]
+        },
+        {
+          "nombre": "Praza de Compostela",
+          "distancia": 200,
+          "lineas": [
+            "5A",
+            "5B",
+            "6",
+            "9B",
+            "10",
+            "11",
+            "15B",
+            "15C",
+            "24",
+            "28",
+            "A",
+            "C3i",
+            "H1",
+            "N1",
+            "N4"
+          ]
+        }
+      ],
+      "lineas": [
+        "5A",
+        "5B",
+        "6",
+        "9B",
+        "10",
+        "11",
+        "15B",
+        "15C",
+        "24",
+        "28",
+        "A",
+        "C1",
+        "C3d",
+        "C3i",
+        "H1",
+        "N1",
+        "N4"
+      ]
+    },
+    "bambu-vigo": {
+      "paradas": [
+        {
+          "nombre": "Avda. de García Barbón  43",
+          "distancia": 47,
+          "lineas": [
+            "5B",
+            "10",
+            "16",
+            "17",
+            "C3i",
+            "N1"
+          ]
+        },
+        {
+          "nombre": "Avda. de García Barbón  28",
+          "distancia": 80,
+          "lineas": [
+            "5B",
+            "10",
+            "16",
+            "17",
+            "24",
+            "A",
+            "C3d",
+            "H2",
+            "PSA1"
+          ]
+        },
+        {
+          "nombre": "Avda. García Barbón  7",
+          "distancia": 190,
+          "lineas": [
+            "4A",
+            "4C",
+            "5B",
+            "6",
+            "7",
+            "9B",
+            "10",
+            "12B",
+            "16",
+            "17",
+            "28",
+            "C3i",
+            "N1",
+            "N4",
+            "PSA4"
+          ]
+        }
+      ],
+      "lineas": [
+        "4A",
+        "4C",
+        "5B",
+        "6",
+        "7",
+        "9B",
+        "10",
+        "12B",
+        "16",
+        "17",
+        "24",
+        "28",
+        "A",
+        "C3d",
+        "C3i",
+        "H2",
+        "N1",
+        "N4",
+        "PSA1",
+        "PSA4"
+      ]
+    },
+    "o-fento-vigo": {
+      "paradas": [
+        {
+          "nombre": "Rúa das Teixugueiras  22",
+          "distancia": 53,
+          "lineas": [
+            "5A",
+            "5B",
+            "13",
+            "N4"
+          ]
+        },
+        {
+          "nombre": "Rúa das Teixugueiras  17",
+          "distancia": 103,
+          "lineas": [
+            "5A",
+            "5B",
+            "13",
+            "15A",
+            "H",
+            "N4",
+            "PSA1",
+            "PSA4",
+            "U1"
+          ]
+        },
+        {
+          "nombre": "Rúa do Limpiño (Rotonda Rúa Teixugueiras)",
+          "distancia": 269,
+          "lineas": [
+            "5A",
+            "5B",
+            "13",
+            "15A",
+            "15B",
+            "H",
+            "N4",
+            "PSA1",
+            "PSA4",
+            "U1"
+          ]
+        }
+      ],
+      "lineas": [
+        "5A",
+        "5B",
+        "13",
+        "15A",
+        "15B",
+        "H",
+        "N4",
+        "PSA1",
+        "PSA4",
+        "U1"
+      ]
+    },
+    "the-hippie-baker-vigo": {
+      "paradas": [
+        {
+          "nombre": "Rúa de Cánovas del Castillo  28",
+          "distancia": 89,
+          "lineas": [
+            "5A"
+          ]
+        },
+        {
+          "nombre": "Rúa de Cánovas del Castillo  18",
+          "distancia": 112,
+          "lineas": [
+            "5A",
+            "9B",
+            "10",
+            "15B",
+            "15C",
+            "28",
+            "A",
+            "C1",
+            "C3d",
+            "N4"
+          ]
+        },
+        {
+          "nombre": "Praza de Compostela (fronte 35)",
+          "distancia": 126,
+          "lineas": [
+            "5A",
+            "5B",
+            "6",
+            "9B",
+            "10",
+            "11",
+            "15B",
+            "15C",
+            "28",
+            "A",
+            "C3i",
+            "H1",
+            "N1",
+            "N4"
+          ]
+        }
+      ],
+      "lineas": [
+        "5A",
+        "5B",
+        "6",
+        "9B",
+        "10",
+        "11",
+        "15B",
+        "15C",
+        "28",
+        "A",
+        "C1",
+        "C3d",
+        "C3i",
+        "H1",
+        "N1",
+        "N4"
+      ]
+    },
+    "galgala-vigo": {
+      "paradas": [
+        {
+          "nombre": "Paseo de Granada S/N",
+          "distancia": 92,
+          "lineas": [
+            "5B"
+          ]
+        },
+        {
+          "nombre": "Avda. das Camelias s/n ( Praza do Rei)",
+          "distancia": 181,
+          "lineas": [
+            "4A",
+            "4C",
+            "5B",
+            "7",
+            "12A",
+            "12B",
+            "16",
+            "17",
+            "27",
+            "PSA4"
+          ]
+        },
+        {
+          "nombre": "Avda. das Camelias (fronte Praza do Rei)",
+          "distancia": 191,
+          "lineas": [
+            "4A",
+            "4C",
+            "11",
+            "12B",
+            "17",
+            "27",
+            "N1"
+          ]
+        }
+      ],
+      "lineas": [
+        "4A",
+        "4C",
+        "5B",
+        "7",
+        "11",
+        "12A",
+        "12B",
+        "16",
+        "17",
+        "27",
+        "N1",
+        "PSA4"
+      ]
+    },
+    "terrae-vigo": {
+      "paradas": [
+        {
+          "nombre": "Rúa de Pizarro  16",
+          "distancia": 71,
+          "lineas": [
+            "6",
+            "11",
+            "15A",
+            "23",
+            "25",
+            "28",
+            "C3i"
+          ]
+        },
+        {
+          "nombre": "Rúa de Venezuela  60",
+          "distancia": 150,
+          "lineas": [
+            "27"
+          ]
+        },
+        {
+          "nombre": "Rúa de Pizarro  65",
+          "distancia": 195,
+          "lineas": [
+            "6",
+            "15A",
+            "23",
+            "25",
+            "27",
+            "28",
+            "C3d",
+            "H2",
+            "PSA1",
+            "U2"
+          ]
+        }
+      ],
+      "lineas": [
+        "6",
+        "11",
+        "15A",
+        "23",
+        "25",
+        "27",
+        "28",
+        "C3d",
+        "C3i",
+        "H2",
+        "PSA1",
+        "U2"
+      ]
+    },
+    "arrecende-vigo": {
+      "paradas": [
+        {
+          "nombre": "Praza de España (cruce Rúa de Pizarro)",
+          "distancia": 6,
+          "lineas": [
+            "7",
+            "12A",
+            "12B",
+            "14",
+            "16",
+            "18A",
+            "18B",
+            "18H",
+            "A"
+          ]
+        },
+        {
+          "nombre": "Praza de España (cruce Rúa de Fernando Conde)",
+          "distancia": 62,
+          "lineas": [
+            "6",
+            "13",
+            "14",
+            "18B",
+            "18H",
+            "25",
+            "29"
+          ]
+        },
+        {
+          "nombre": "Rúa de Fernando Conde (cruce Avda. da Gran Vía)",
+          "distancia": 82,
+          "lineas": [
+            "27"
+          ]
+        }
+      ],
+      "lineas": [
+        "6",
+        "7",
+        "12A",
+        "12B",
+        "13",
+        "14",
+        "16",
+        "18A",
+        "18B",
+        "18H",
+        "25",
+        "27",
+        "29",
+        "A"
+      ]
+    },
+    "lume-de-carozo-vigo": {
+      "paradas": [
+        {
+          "nombre": "Praza de Compostela (fronte 35)",
+          "distancia": 127,
+          "lineas": [
+            "5A",
+            "5B",
+            "6",
+            "9B",
+            "10",
+            "11",
+            "15B",
+            "15C",
+            "28",
+            "A",
+            "C3i",
+            "H1",
+            "N1",
+            "N4"
+          ]
+        },
+        {
+          "nombre": "Praza de Compostela  2",
+          "distancia": 160,
+          "lineas": [
+            "5A",
+            "9B",
+            "10",
+            "15B",
+            "15C",
+            "28",
+            "A",
+            "C1",
+            "C3d",
+            "N4"
+          ]
+        },
+        {
+          "nombre": "Praza de Compostela",
+          "distancia": 249,
+          "lineas": [
+            "5A",
+            "5B",
+            "6",
+            "9B",
+            "10",
+            "11",
+            "15B",
+            "15C",
+            "24",
+            "28",
+            "A",
+            "C3i",
+            "H1",
+            "N1",
+            "N4"
+          ]
+        }
+      ],
+      "lineas": [
+        "5A",
+        "5B",
+        "6",
+        "9B",
+        "10",
+        "11",
+        "15B",
+        "15C",
+        "24",
+        "28",
+        "A",
+        "C1",
+        "C3d",
+        "C3i",
+        "H1",
+        "N1",
+        "N4"
+      ]
+    },
+    "pizzeria-carlos-vigo": {
+      "paradas": [
+        {
+          "nombre": "Avda. de Castelao  50",
+          "distancia": 79,
+          "lineas": [
+            "4A",
+            "4C",
+            "5B",
+            "10",
+            "12A",
+            "13",
+            "15A",
+            "C3d",
+            "PSA1",
+            "PSA4"
+          ]
+        },
+        {
+          "nombre": "Avda. de Castelao  41",
+          "distancia": 90,
+          "lineas": [
+            "4A",
+            "4C",
+            "10",
+            "11",
+            "12A",
+            "15A",
+            "C3i",
+            "N1",
+            "U1"
+          ]
+        },
+        {
+          "nombre": "Rúa de Martín Echegaray (Colexio)",
+          "distancia": 97,
+          "lineas": [
+            "23",
+            "N4"
+          ]
+        }
+      ],
+      "lineas": [
+        "4A",
+        "4C",
+        "5B",
+        "10",
+        "11",
+        "12A",
+        "13",
+        "15A",
+        "23",
+        "C3d",
+        "C3i",
+        "N1",
+        "N4",
+        "PSA1",
+        "PSA4",
+        "U1"
+      ]
+    },
+    "alium-vigo": {
+      "paradas": [
+        {
+          "nombre": "Rúa de Venezuela  60",
+          "distancia": 116,
+          "lineas": [
+            "27"
+          ]
+        },
+        {
+          "nombre": "Rúa de Pizarro  16",
+          "distancia": 133,
+          "lineas": [
+            "6",
+            "11",
+            "15A",
+            "23",
+            "25",
+            "28",
+            "C3i"
+          ]
+        },
+        {
+          "nombre": "Avda. da Gran Vía  19",
+          "distancia": 170,
+          "lineas": [
+            "4A",
+            "4C",
+            "5B",
+            "7",
+            "11",
+            "12B",
+            "14",
+            "16",
+            "17",
+            "18A",
+            "18B",
+            "18H",
+            "N1"
+          ]
+        }
+      ],
+      "lineas": [
+        "4A",
+        "4C",
+        "5B",
+        "6",
+        "7",
+        "11",
+        "12B",
+        "14",
+        "15A",
+        "16",
+        "17",
+        "18A",
+        "18B",
+        "18H",
+        "23",
+        "25",
+        "27",
+        "28",
+        "C3i",
+        "N1"
+      ]
+    },
+    "ramen-king-vigo": {
+      "paradas": [
+        {
+          "nombre": "Avda. da Gran Vía  185",
+          "distancia": 71,
+          "lineas": [
+            "7",
+            "11",
+            "13",
+            "15A",
+            "16",
+            "23",
+            "29",
+            "C3i",
+            "H2"
+          ]
+        },
+        {
+          "nombre": "Avda. da Gran Vía  176",
+          "distancia": 150,
+          "lineas": [
+            "13",
+            "15A",
+            "23",
+            "29",
+            "C3d",
+            "H2",
+            "PSA1",
+            "U2"
+          ]
+        },
+        {
+          "nombre": "Rúa do Pintor Laxeiro  4",
+          "distancia": 151,
+          "lineas": [
+            "C1"
+          ]
+        }
+      ],
+      "lineas": [
+        "7",
+        "11",
+        "13",
+        "15A",
+        "16",
+        "23",
+        "29",
+        "C1",
+        "C3d",
+        "C3i",
+        "H2",
+        "PSA1",
+        "U2"
+      ]
+    },
+    "la-urbana-vigo": {
+      "paradas": [
+        {
+          "nombre": "Avda. de García Barbón  43",
+          "distancia": 125,
+          "lineas": [
+            "5B",
+            "10",
+            "16",
+            "17",
+            "C3i",
+            "N1"
+          ]
+        },
+        {
+          "nombre": "Avda. de García Barbón  18",
+          "distancia": 147,
+          "lineas": [
+            "5B",
+            "10",
+            "17",
+            "C3d",
+            "H2",
+            "PSA1"
+          ]
+        },
+        {
+          "nombre": "Avda. de García Barbón  28",
+          "distancia": 153,
+          "lineas": [
+            "5B",
+            "10",
+            "16",
+            "17",
+            "24",
+            "A",
+            "C3d",
+            "H2",
+            "PSA1"
+          ]
+        }
+      ],
+      "lineas": [
+        "5B",
+        "10",
+        "16",
+        "17",
+        "24",
+        "A",
+        "C3d",
+        "C3i",
+        "H2",
+        "N1",
+        "PSA1"
+      ]
+    },
+    "vicio-vigo": {
+      "paradas": [
+        {
+          "nombre": "Rúa de Colón  26",
+          "distancia": 5,
+          "lineas": [
+            "4A",
+            "4C",
+            "5B",
+            "7",
+            "12B",
+            "16",
+            "17",
+            "PSA4"
+          ]
+        },
+        {
+          "nombre": "Rúa de Policarpo Sanz  40",
+          "distancia": 65,
+          "lineas": [
+            "5A",
+            "9B",
+            "15B",
+            "15C",
+            "24",
+            "28",
+            "A",
+            "C1",
+            "N4"
+          ]
+        },
+        {
+          "nombre": "GARCÍA BARBÓN NO ACTIVA",
+          "distancia": 77,
+          "lineas": [
+            "14",
+            "18A",
+            "18B",
+            "18H",
+            "28",
+            "A",
+            "PSA1"
+          ]
+        }
+      ],
+      "lineas": [
+        "4A",
+        "4C",
+        "5A",
+        "5B",
+        "7",
+        "9B",
+        "12B",
+        "14",
+        "15B",
+        "15C",
+        "16",
+        "17",
+        "18A",
+        "18B",
+        "18H",
+        "24",
+        "28",
+        "A",
+        "C1",
+        "N4",
+        "PSA1",
+        "PSA4"
+      ]
+    },
+    "la-pepita-oporto-vigo": {
+      "paradas": [
+        {
+          "nombre": "Avda. de García Barbón  43",
+          "distancia": 83,
+          "lineas": [
+            "5B",
+            "10",
+            "16",
+            "17",
+            "C3i",
+            "N1"
+          ]
+        },
+        {
+          "nombre": "Avda. de García Barbón  28",
+          "distancia": 93,
+          "lineas": [
+            "5B",
+            "10",
+            "16",
+            "17",
+            "24",
+            "A",
+            "C3d",
+            "H2",
+            "PSA1"
+          ]
+        },
+        {
+          "nombre": "Avda. García Barbón  7",
+          "distancia": 253,
+          "lineas": [
+            "4A",
+            "4C",
+            "5B",
+            "6",
+            "7",
+            "9B",
+            "10",
+            "12B",
+            "16",
+            "17",
+            "28",
+            "C3i",
+            "N1",
+            "N4",
+            "PSA4"
+          ]
+        }
+      ],
+      "lineas": [
+        "4A",
+        "4C",
+        "5B",
+        "6",
+        "7",
+        "9B",
+        "10",
+        "12B",
+        "16",
+        "17",
+        "24",
+        "28",
+        "A",
+        "C3d",
+        "C3i",
+        "H2",
+        "N1",
+        "N4",
+        "PSA1",
+        "PSA4"
+      ]
+    },
+    "la-pepita-vialia-vigo": {
+      "paradas": [
+        {
+          "nombre": "Avda. de García Barbón  60",
+          "distancia": 207,
+          "lineas": [
+            "5B",
+            "10",
+            "16",
+            "17",
+            "24",
+            "A",
+            "C3d",
+            "H2",
+            "PSA1"
+          ]
+        },
+        {
+          "nombre": "Avda. de García Barbón  87",
+          "distancia": 260,
+          "lineas": [
+            "5B",
+            "10",
+            "17",
+            "C3i",
+            "N1"
+          ]
+        },
+        {
+          "nombre": "Rúa de Urzáiz - Est. Intermodal - C.C.",
+          "distancia": 369,
+          "lineas": [
+            "4A",
+            "4C",
+            "5A",
+            "6",
+            "9B",
+            "11",
+            "15B",
+            "15C",
+            "24",
+            "28",
+            "A",
+            "N4",
+            "PSA4"
+          ]
+        }
+      ],
+      "lineas": [
+        "4A",
+        "4C",
+        "5A",
+        "5B",
+        "6",
+        "9B",
+        "10",
+        "11",
+        "15B",
+        "15C",
+        "16",
+        "17",
+        "24",
+        "28",
+        "A",
+        "C3d",
+        "C3i",
+        "H2",
+        "N1",
+        "N4",
+        "PSA1",
+        "PSA4"
       ]
     }
   }

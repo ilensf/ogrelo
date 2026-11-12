@@ -21,7 +21,7 @@
     "nombre": "Vigo",
     "provincia": "Pontevedra",
     "centro": { "lat": 42.2406, "lng": -8.7207 },
-    "gtfs": null
+    "gtfs": { "url": "https://datos.vigo.org/data/transporte/gtfs_vigo.zip", "fuente": { "es": "GTFS de Vitrasa (Concello de Vigo, ODC-BY)", "gl": "GTFS de Vitrasa (Concello de Vigo, ODC-BY)" } }
   },
   "pontevedra": {
     "nombre": "Pontevedra",
