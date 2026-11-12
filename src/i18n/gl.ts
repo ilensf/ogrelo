@@ -32,6 +32,8 @@ export const gl: Textos = {
     guiaTexto: (sitios, ciudades) =>
       `O Grelo reúne ${sitios} restaurantes, bares e cafetarías de ${ciudades} cidades galegas con oferta vegana ou vexetariana. Cada ficha indica canto da carta é vexetal, o horario, o teléfono para reservar e como chegar. Os sitios están ordenados dos 100 % vexetais aos que só teñen algún prato vegano.`,
     explorar: 'Explora por cidade',
+    tiendasTitulo: 'Tendas veganas',
+    tiendasTexto: 'Sitios onde non se come, pero se merca comida vegana para cociñar na casa.',
     nSitios: (n) => `${n} ${n === 1 ? 'sitio' : 'sitios'}`,
   },
   ciudad: {
@@ -54,6 +56,11 @@ export const gl: Textos = {
       nombre: 'Boas opcións veganas',
       corto: 'Boas opcións',
       descripcion: 'Restaurante convencional con polo menos tres pratos veganos cos que facer unha comida, sexan principais ou racións.',
+    },
+    'tienda-vegana': {
+      nombre: 'Tenda 100 % vegana',
+      corto: 'Tenda vegana',
+      descripcion: 'Tenda onde todo o que se vende é vegano. Non se come alí: mércase para cociñar na casa.',
     },
     'alguna-opcion': {
       nombre: 'Algunha opción vegana',
@@ -87,6 +94,10 @@ export const gl: Textos = {
     panadería: 'panadaría',
     ecológica: 'ecolóxica',
     brasileña: 'brasileira',
+    'carnicería vegana': 'carnicaría vegana',
+    herbolario: 'herbolario',
+    'alimentación a granel': 'alimentación a granel',
+    'supermercado vegano': 'supermercado vegano',
   },
   horario: {
     cerrado: 'Pechado',
@@ -119,6 +130,9 @@ export const gl: Textos = {
     quitar: 'Quitar filtros',
     ver: (n) => `Ver ${n} ${sitios(n)}`,
     sitios,
+    modo: 'Que buscas',
+    modoComer: 'Comer',
+    modoComprar: 'Mercar',
     de: 'de',
     ordenar: 'Ordenar por',
     verEnMapa: (nombre) => `Ver ${nombre} no mapa`,
@@ -141,6 +155,10 @@ export const gl: Textos = {
     titulo: (nombre, lugar) => `${nombre}: opcións vexetarianas e veganas ${lugar} | O Grelo`,
     volver: (lugar) => `Restaurantes ${lugar}`,
     llamar: 'Chamar para reservar:',
+    volverTienda: (lugar) => `Tendas veganas ${lugar}`,
+    llamarTienda: 'Chamar:',
+    tituloTienda: (nombre, lugar) => `${nombre}: tenda vegana ${lugar} | O Grelo`,
+    queComprar: 'Que mercar',
     web: 'Web',
     verCarta: 'Ver carta',
     abrirMaps: 'Abrir en Google Maps',

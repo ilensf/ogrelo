@@ -30,6 +30,8 @@ export const es = {
     guiaTexto: (sitios: number, ciudades: number) =>
       `O Grelo reúne ${sitios} restaurantes, bares y cafeterías de ${ciudades} ciudades gallegas con oferta vegana o vegetariana. Cada ficha indica cuánto de la carta es vegetal, el horario, el teléfono para reservar y cómo llegar. Los sitios están ordenados de los 100 % vegetales a los que solo tienen algún plato vegano.`,
     explorar: 'Explora por ciudad',
+    tiendasTitulo: 'Tiendas veganas',
+    tiendasTexto: 'Sitios donde no se come, pero se compra comida vegana para cocinar en casa.',
     nSitios: (n: number) => `${n} ${n === 1 ? 'sitio' : 'sitios'}`,
   },
   ciudad: {
@@ -52,6 +54,11 @@ export const es = {
       nombre: 'Buenas opciones veganas',
       corto: 'Buenas opciones',
       descripcion: 'Restaurante convencional con al menos tres platos veganos con los que hacer una comida, sean principales o raciones.',
+    },
+    'tienda-vegana': {
+      nombre: 'Tienda 100 % vegana',
+      corto: 'Tienda vegana',
+      descripcion: 'Tienda donde todo lo que se vende es vegano. No se come allí: se compra para cocinar en casa.',
     },
     'alguna-opcion': {
       nombre: 'Alguna opción vegana',
@@ -104,6 +111,9 @@ export const es = {
     quitar: 'Quitar filtros',
     ver: (n: number) => `Ver ${n} ${sitios(n)}`,
     sitios,
+    modo: 'Qué buscas',
+    modoComer: 'Comer',
+    modoComprar: 'Comprar',
     de: 'de',
     ordenar: 'Ordenar por',
     verEnMapa: (nombre: string) => `Ver ${nombre} en el mapa`,
@@ -126,6 +136,10 @@ export const es = {
     titulo: (nombre: string, lugar: string) => `${nombre}: opciones vegetarianas y veganas ${lugar} | O Grelo`,
     volver: (lugar: string) => `Restaurantes ${lugar}`,
     llamar: 'Llamar para reservar:',
+    volverTienda: (lugar: string) => `Tiendas veganas ${lugar}`,
+    llamarTienda: 'Llamar:',
+    tituloTienda: (nombre: string, lugar: string) => `${nombre}: tienda vegana ${lugar} | O Grelo`,
+    queComprar: 'Qué comprar',
     web: 'Web',
     verCarta: 'Ver carta',
     abrirMaps: 'Abrir en Google Maps',

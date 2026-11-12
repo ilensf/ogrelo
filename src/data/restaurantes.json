@@ -2299,5 +2299,55 @@
     "borrador": true,
     "direccion": "Rúa Cobián Roffignac, 2, Pontevedra",
     "resumen": "Hamburguesería con una hamburguesa vegana de Beyond Meat, queso vegano y salsas veganas. Conviene confirmar que este local la tiene."
+  },
+  {
+    "id": "mi-vaina-coruna",
+    "nombre": "Mi Vaina Vutcher",
+    "ciudad": "a-coruna",
+    "dieta": "tienda-vegana",
+    "cocina": ["carnicería vegana"],
+    "barrio": null,
+    "coords": { "lat": 43.358531, "lng": -8.421198, "exactas": false },
+    "telefono": "+34881129245",
+    "web": "https://www.instagram.com/mivaina.vutcher.shop",
+    "carta": null,
+    "precio": null,
+    "precioNota": null,
+    "horario": {
+      "lun": [["11:00", "14:00"], ["17:30", "20:30"]], "mar": [["11:00", "14:00"], ["17:30", "20:30"]], "mie": [["11:00", "14:00"], ["17:30", "20:30"]],
+      "jue": [["11:00", "14:00"], ["17:30", "20:30"]], "vie": [["11:00", "14:00"], ["17:30", "20:30"]], "sab": [["10:30", "14:00"]]
+    },
+    "destacados": ["Chorizo vegano", "Morcilla vegana", "Salchichas veganas", "Filetes vegetales"],
+    "servicios": [],
+    "valoraciones": [],
+    "enlaces": {},
+    "borrador": true,
+    "direccion": "Avenida de Finisterre, 137, bajo, 15001 A Coruña",
+    "resumen": "Carnicería vegana donde no se come, sino que se compra: salchichas, chorizo, morcilla y filetes de base vegetal para cocinar en casa."
+  },
+  {
+    "id": "herbas-santiago",
+    "nombre": "Herbas Tenda Vegana",
+    "ciudad": "santiago",
+    "dieta": "tienda-vegana",
+    "cocina": ["herbolario", "alimentación a granel"],
+    "barrio": null,
+    "coords": { "lat": 42.875977, "lng": -8.543728, "exactas": true },
+    "telefono": "+34981577484",
+    "web": "https://herbas.es/",
+    "carta": null,
+    "precio": null,
+    "precioNota": null,
+    "horario": {
+      "lun": [["10:45", "14:00"], ["17:00", "20:30"]], "mar": [["10:45", "14:00"], ["17:00", "20:30"]], "mie": [["10:45", "14:00"], ["17:00", "20:30"]],
+      "jue": [["10:45", "14:00"], ["17:00", "20:30"]], "vie": [["10:45", "14:00"], ["17:00", "20:30"]], "sab": [["10:30", "14:00"]]
+    },
+    "destacados": ["Alimentación a granel", "Tofu y seitán", "Cosmética natural"],
+    "servicios": ["domicilio"],
+    "valoraciones": [],
+    "enlaces": {},
+    "borrador": true,
+    "direccion": "Rúa dos Pitelos, 26, bajo, 15702 Santiago de Compostela",
+    "resumen": "Pequeña tienda 100 % vegana con alimentación a granel, tofu, seitán, tés, cosmética natural y productos para el hogar. Tiene tienda online con envíos."
   }
 ]

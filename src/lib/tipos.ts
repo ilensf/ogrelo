@@ -1,4 +1,4 @@
-export type Dieta = 'vegano' | 'vegetariano' | 'carta-vegana' | 'buenas-opciones' | 'alguna-opcion';
+export type Dieta = 'vegano' | 'vegetariano' | 'carta-vegana' | 'buenas-opciones' | 'alguna-opcion' | 'tienda-vegana';
 export type Dia = 'lun' | 'mar' | 'mie' | 'jue' | 'vie' | 'sab' | 'dom';
 /** Franja horaria ["HH:MM", "HH:MM"]. Si el cierre es menor que la apertura, cruza la medianoche. */
 export type Franja = [string, string];

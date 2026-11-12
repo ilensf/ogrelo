@@ -5,7 +5,7 @@ import Mapa from './Mapa.vue';
 import EstadoAhora from './EstadoAhora.vue';
 import { etiquetaCocina, raizIdioma, textos, type Idioma } from '../i18n';
 import { formatearTelefono, fuenteTransporte } from '../lib/datos';
-import { DIAS } from '../lib/etiquetas';
+import { DIAS, esTienda } from '../lib/etiquetas';
 import { formatearFranjas } from '../lib/horario';
 import type { RestauranteVista } from '../lib/tipos';
 
@@ -17,6 +17,7 @@ const { r, idioma } = Astro.props;
 const t = textos(idioma);
 const raiz = raizIdioma(import.meta.env.BASE_URL, idioma);
 const lugar = t.enLugar(r.ciudadNombre);
+const tienda = esTienda(r.dieta);
 const fuenteBus = fuenteTransporte(r.ciudad, idioma);
 const tieneHorario = Object.keys(r.horario).length > 0;
 const destino = encodeURIComponent(`${r.nombre}, ${r.direccion}`);
@@ -24,10 +25,10 @@ const rutaBus = `https://www.google.com/maps/dir/?api=1&destination=${destino}&t
 const DIA_SCHEMA = { lun: 'Monday', mar: 'Tuesday', mie: 'Wednesday', jue: 'Thursday', vie: 'Friday', sab: 'Saturday', dom: 'Sunday' } as const;
 const datosEstructurados = {
   '@context': 'https://schema.org',
-  '@type': 'Restaurant',
+  '@type': tienda ? 'Store' : 'Restaurant',
   name: r.nombre,
   description: r.resumen,
-  servesCuisine: r.cocina,
+  ...(!tienda && { servesCuisine: r.cocina }),
   ...(r.precio && { priceRange: '€'.repeat(r.precio) }),
   address: { '@type': 'PostalAddress', streetAddress: r.direccion, addressLocality: r.ciudadNombre, addressCountry: 'ES' },
   ...(r.telefono && { telephone: r.telefono }),
@@ -44,12 +45,12 @@ const datosEstructurados = {
 };
 ---
 
-<Base idioma={idioma} titulo={t.ficha.titulo(r.nombre, lugar)} descripcion={r.resumen}>
+<Base idioma={idioma} titulo={tienda ? t.ficha.tituloTienda(r.nombre, lugar) : t.ficha.titulo(r.nombre, lugar)} descripcion={r.resumen}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(datosEstructurados).replace(/</g, '\\u003c')} />
   <div class={`contenedor ficha d-${r.dieta}`}>
-    <a class="volver" href={`${raiz}${r.ciudad}/`}>
+    <a class="volver" href={`${raiz}${r.ciudad}/${tienda ? '?tipo=tiendas' : ''}`}>
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M20 11H7.800l5.600-5.600L12 4l-8 8 8 8 1.400-1.400L7.800 13H20z" /></svg>
-      {t.ficha.volver(lugar)}
+      {tienda ? t.ficha.volverTienda(lugar) : t.ficha.volver(lugar)}
     </a>
 
     <header class="ficha-cabecera">
@@ -71,7 +72,7 @@ const datosEstructurados = {
       {
         r.telefono && (
           <a class="boton boton--principal" href={`tel:${r.telefono}`}>
-            {t.ficha.llamar} {formatearTelefono(r.telefono)}
+            {tienda ? t.ficha.llamarTienda : t.ficha.llamar} {formatearTelefono(r.telefono)}
           </a>
         )
       }
@@ -86,7 +87,7 @@ const datosEstructurados = {
         {
           r.destacados.length > 0 && (
             <>
-              <h2>{t.ficha.quePedir}</h2>
+              <h2>{tienda ? t.ficha.queComprar : t.ficha.quePedir}</h2>
               <ul class="destacados">
                 {r.destacados.map((d) => (
                   <li>{d}</li>

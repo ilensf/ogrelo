@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Directorio from './Directorio.vue';
 import { raizIdioma, textos, type Idioma } from '../i18n';
+import { esTienda } from '../lib/etiquetas';
 import { obtenerCiudades, obtenerRestaurantes } from '../lib/datos';
 
 interface Props {
@@ -13,7 +14,9 @@ const { idioma, ciudadActual } = Astro.props;
 const t = textos(idioma);
 const raiz = raizIdioma(import.meta.env.BASE_URL, idioma);
 const ciudades = obtenerCiudades();
-const restaurantes = obtenerRestaurantes(idioma, ciudadActual);
+const todos = obtenerRestaurantes(idioma, ciudadActual);
+const restaurantes = todos.filter((r) => !esTienda(r.dieta));
+const tiendas = todos.filter((r) => esTienda(r.dieta));
 const nombreCiudad = ciudades.find((c) => c.id === ciudadActual)?.nombre;
 const lugar = nombreCiudad ? t.enLugar(nombreCiudad) : '';
 
@@ -42,7 +45,7 @@ const ocultas =
         </nav>
       )
     }
-    <Directorio client:load restaurantes={restaurantes} base={raiz} idioma={idioma} />
+    <Directorio client:load restaurantes={todos} base={raiz} idioma={idioma} />
   </div>
   <section class="contenedor otros">
     <h2>{t.portada.guiaTitulo}</h2>
@@ -63,6 +66,22 @@ const ocultas =
       )
     }
   </section>
+  {
+    tiendas.length > 0 && (
+      <section class="contenedor otros">
+        <h2>{t.portada.tiendasTitulo}</h2>
+        <p>{t.portada.tiendasTexto}</p>
+        <ul>
+          {tiendas.map((r) => (
+            <li>
+              <a href={`${raiz}restaurante/${r.id}/`}>{r.nombre}</a>
+              <span>{ciudadActual ? r.direccion.split(',')[0] : r.ciudadNombre}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
   {
     ocultas.length > 0 && (
       <section class="contenedor otros">

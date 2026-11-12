@@ -1,6 +1,6 @@
 {
   "_info": "Generado por `npm run data:transporte`. No editar a mano.",
-  "generado": "2026-11-09T14:54:18.376Z",
+  "generado": "2026-11-12T14:42:07.555Z",
   "fuentes": {
     "a-coruna": "GTFS de la Compañía de Tranvías de La Coruña",
     "ourense": "GTFS del bus urbano de Ourense (Avanza)"
@@ -2096,6 +2096,44 @@
       ],
       "lineas": [
         "11"
+      ]
+    },
+    "mi-vaina-coruna": {
+      "paradas": [
+        {
+          "nombre": "Av. de Fisterra, 288",
+          "distancia": 43,
+          "lineas": [
+            "6",
+            "6A"
+          ]
+        },
+        {
+          "nombre": "Rda. de Outeiro, 219",
+          "distancia": 126,
+          "lineas": [
+            "12A",
+            "14",
+            "22",
+            "BUH"
+          ]
+        },
+        {
+          "nombre": "Ventorrillo,C.Saúde",
+          "distancia": 133,
+          "lineas": [
+            "7"
+          ]
+        }
+      ],
+      "lineas": [
+        "6",
+        "6A",
+        "7",
+        "12A",
+        "14",
+        "22",
+        "BUH"
       ]
     }
   }

@@ -46,6 +46,9 @@
   --c-alguna-f: #ebe9e3;
   --c-alguna-t: #55585a;
   --c-alguna-p: #9a9c98;
+  --c-tienda-f: #fbe6cf;
+  --c-tienda-t: #86470a;
+  --c-tienda-p: #e08a2e;
 
   /* hojas del medidor sobre fondo invertido (chips activos) */
   --hoja-invertida: #ffffff;
@@ -94,6 +97,9 @@
     --c-alguna-f: #2c302e;
     --c-alguna-t: #c4cac7;
     --c-alguna-p: #8b928f;
+    --c-tienda-f: #3f2a12;
+    --c-tienda-t: #f2c590;
+    --c-tienda-p: #e89a3c;
     --hoja-invertida: #1b1e1d;
     --hoja-invertida-vacia: rgba(0, 0, 0, 0.3);
     --sombra: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
@@ -134,6 +140,9 @@
     --c-alguna-f: #2c302e;
     --c-alguna-t: #c4cac7;
     --c-alguna-p: #8b928f;
+    --c-tienda-f: #3f2a12;
+    --c-tienda-t: #f2c590;
+    --c-tienda-p: #e89a3c;
     --hoja-invertida: #1b1e1d;
     --hoja-invertida-vacia: rgba(0, 0, 0, 0.3);
     --sombra: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.3);
@@ -160,6 +169,11 @@
   --d-fondo: var(--c-opciones-f);
   --d-texto: var(--c-opciones-t);
   --d-punto: var(--c-opciones-p);
+}
+.d-tienda-vegana {
+  --d-fondo: var(--c-tienda-f);
+  --d-texto: var(--c-tienda-t);
+  --d-punto: var(--c-tienda-p);
 }
 .d-alguna-opcion {
   --d-fondo: var(--c-alguna-f);

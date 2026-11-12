@@ -3,12 +3,17 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import Mapa from './Mapa.vue';
 import type { PuntoMapa } from './Mapa.vue';
 import { etiquetaCocina, textos, type Idioma } from '../i18n';
-import { DIETAS, SERVICIOS } from '../lib/etiquetas';
+import { DIETAS, SERVICIOS, esTienda } from '../lib/etiquetas';
 import { ahoraLocal, estadoAhora, type Estado } from '../lib/horario';
 import type { Dieta, RestauranteVista, Servicio } from '../lib/tipos';
 
 const props = defineProps<{ restaurantes: RestauranteVista[]; base: string; idioma: Idioma }>();
 const t = textos(props.idioma);
+
+// Las tiendas veganas van aparte: «Comer» lista los restaurantes y «Comprar» las tiendas.
+const modo = ref<'comer' | 'comprar'>('comer');
+const hayTiendas = computed(() => props.restaurantes.some((r) => esTienda(r.dieta)));
+const lista = computed(() => props.restaurantes.filter((r) => esTienda(r.dieta) === (modo.value === 'comprar')));
 
 type Orden = 'recomendado' | 'abierto' | 'nota' | 'nombre';
 const ORDENES: Orden[] = ['recomendado', 'abierto', 'nota', 'nombre'];
@@ -33,21 +38,21 @@ let reloj: ReturnType<typeof setInterval> | undefined;
 
 const conteoDieta = computed(() => {
   const c: Record<string, number> = {};
-  for (const r of props.restaurantes) c[r.dieta] = (c[r.dieta] ?? 0) + 1;
+  for (const r of lista.value) c[r.dieta] = (c[r.dieta] ?? 0) + 1;
   return c;
 });
 
 const barrios = computed(() => {
   const m = new Map<string, string>();
-  for (const r of props.restaurantes) if (r.barrio && r.barrioNombre) m.set(r.barrio, r.barrioNombre);
+  for (const r of lista.value) if (r.barrio && r.barrioNombre) m.set(r.barrio, r.barrioNombre);
   return [...m.entries()].sort((a, b) => a[1].localeCompare(b[1], props.idioma));
 });
-const variasCiudades = computed(() => new Set(props.restaurantes.map((r) => r.ciudad)).size > 1);
+const variasCiudades = computed(() => new Set(lista.value.map((r) => r.ciudad)).size > 1);
 const lugar = (r: RestauranteVista) => (variasCiudades.value ? r.ciudadNombre : (r.barrioNombre ?? r.ciudadNombre));
 /** «Alguna opción» sale oculta por defecto, salvo donde no haya nada mejor. */
-const ocultarAlguna = computed(() => props.restaurantes.some((r) => r.dieta !== 'alguna-opcion'));
+const ocultarAlguna = computed(() => lista.value.some((r) => r.dieta !== 'alguna-opcion'));
 const cocinas = computed(() =>
-  [...new Set(props.restaurantes.flatMap((r) => r.cocina))].sort((a, b) =>
+  [...new Set(lista.value.flatMap((r) => r.cocina))].sort((a, b) =>
     etiquetaCocina(t, a).localeCompare(etiquetaCocina(t, b), props.idioma),
   ),
 );
@@ -57,13 +62,13 @@ const normalizar = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, 
 const estados = computed<Record<string, Estado>>(() => {
   if (!ahora.value) return {};
   const res: Record<string, Estado> = {};
-  for (const r of props.restaurantes) res[r.id] = estadoAhora(r.horario, ahora.value);
+  for (const r of lista.value) res[r.id] = estadoAhora(r.horario, ahora.value);
   return res;
 });
 
 const filtrados = computed(() => {
   const q = normalizar(texto.value.trim());
-  return props.restaurantes.filter((r) => {
+  return lista.value.filter((r) => {
     if (q) {
       const cocinas = r.cocina.flatMap((c) => [c, etiquetaCocina(t, c)]).join(' ');
       const pajar = normalizar([r.nombre, r.resumen, cocinas, r.destacados.join(' '), r.barrioNombre ?? '', r.ciudadNombre].join(' '));
@@ -180,6 +185,7 @@ function leerUrl() {
   precioMax.value = (Number(p.get('precio')) || 0) as 0 | 1 | 2 | 3;
   servicios.value = (p.get('servicios')?.split(',').filter(Boolean) ?? []) as Servicio[];
   soloAbiertos.value = p.get('abierto') === '1';
+  modo.value = p.get('tipo') === 'tiendas' && hayTiendas.value ? 'comprar' : 'comer';
   const o = p.get('orden') as Orden | null;
   orden.value = o && ORDENES.includes(o) ? o : 'recomendado';
 }
@@ -192,6 +198,7 @@ function escribirUrl() {
   if (precioMax.value) p.set('precio', String(precioMax.value));
   if (servicios.value.length) p.set('servicios', servicios.value.join(','));
   if (soloAbiertos.value) p.set('abierto', '1');
+  if (modo.value === 'comprar') p.set('tipo', 'tiendas');
   if (orden.value !== 'recomendado') p.set('orden', orden.value);
   const qs = p.toString();
   history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
@@ -204,7 +211,15 @@ onMounted(() => {
   addEventListener('keydown', alEscape);
   ahora.value = new Date();
   reloj = setInterval(() => (ahora.value = new Date()), 60_000);
-  watch([texto, dietas, barrio, cocina, precioMax, servicios, soloAbiertos, orden], escribirUrl, { deep: true });
+  // Al cambiar entre comer y comprar, los filtros de uno no valen para el otro.
+  watch(modo, () => {
+    dietas.value = [];
+    barrio.value = '';
+    cocina.value = '';
+    precioMax.value = 0;
+    resaltado.value = null;
+  });
+  watch([texto, dietas, barrio, cocina, precioMax, servicios, soloAbiertos, orden, modo], escribirUrl, { deep: true });
 });
 onBeforeUnmount(() => {
   clearInterval(reloj);
@@ -237,7 +252,12 @@ onBeforeUnmount(() => {
         </button>
       </div>
 
-      <div class="chips" role="group" :aria-label="t.directorio.tipoSitio">
+      <div v-if="hayTiendas" class="chips" role="group" :aria-label="t.directorio.modo">
+        <button type="button" class="chip" :aria-pressed="modo === 'comer'" @click="modo = 'comer'">{{ t.directorio.modoComer }}</button>
+        <button type="button" class="chip" :aria-pressed="modo === 'comprar'" @click="modo = 'comprar'">{{ t.directorio.modoComprar }}</button>
+      </div>
+
+      <div v-if="modo === 'comer'" class="chips" role="group" :aria-label="t.directorio.tipoSitio">
         <button
           type="button"
           class="chip chip--abierto"
@@ -282,14 +302,14 @@ onBeforeUnmount(() => {
                 <option v-for="[id, nombre] in barrios" :key="id" :value="id">{{ nombre }}</option>
               </select>
             </label>
-            <label>
+            <label v-if="modo === 'comer'">
               <span>{{ t.directorio.cocina }}</span>
               <select v-model="cocina">
                 <option value="">{{ t.directorio.cualquiera }}</option>
                 <option v-for="c in cocinas" :key="c" :value="c">{{ etiquetaCocina(t, c) }}</option>
               </select>
             </label>
-            <label>
+            <label v-if="modo === 'comer'">
               <span>{{ t.directorio.precio }}</span>
               <select v-model.number="precioMax">
                 <option :value="0">{{ t.directorio.cualquiera }}</option>
@@ -328,7 +348,7 @@ onBeforeUnmount(() => {
         <div class="lista-cabecera">
           <p aria-live="polite">
             <strong>{{ filtrados.length }}</strong>
-            {{ t.directorio.sitios(filtrados.length) }}<template v-if="hayFiltros && filtrados.length !== restaurantes.length"> {{ t.directorio.de }} {{ restaurantes.length }}</template>
+            {{ t.directorio.sitios(filtrados.length) }}<template v-if="hayFiltros && filtrados.length !== lista.length"> {{ t.directorio.de }} {{ lista.length }}</template>
             <button v-if="hayFiltros" type="button" class="enlace" @click="limpiar">{{ t.directorio.quitar }}</button>
           </p>
           <label class="orden">

@@ -5,6 +5,7 @@ import barriosGlJson from '../data/barrios.gl.json';
 import ciudadesJson from '../data/ciudades.json';
 import transporteJson from '../data/transporte.json';
 import type { Idioma } from '../i18n';
+import { esTienda } from './etiquetas';
 import type { Barrio, Ciudad, Dieta, Restaurante, RestauranteVista, Transporte } from './tipos';
 
 const restaurantes = restaurantesJson as Restaurante[];
@@ -22,6 +23,7 @@ const ORDEN_DIETA: Record<Dieta, number> = {
   'carta-vegana': 2,
   'buenas-opciones': 3,
   'alguna-opcion': 4,
+  'tienda-vegana': 5,
 };
 
 function enlaceGoogleMaps(r: Restaurante): string {
@@ -55,7 +57,7 @@ export function obtenerRestaurantes(idioma: Idioma, ciudad?: string): Restaurant
 /** Ciudades con algún restaurante, por orden alfabético. */
 export function obtenerCiudades(): { id: string; nombre: string; total: number }[] {
   return Object.entries(ciudades)
-    .map(([id, c]) => ({ id, nombre: c.nombre, total: restaurantes.filter((r) => r.ciudad === id).length }))
+    .map(([id, c]) => ({ id, nombre: c.nombre, total: restaurantes.filter((r) => r.ciudad === id && !esTienda(r.dieta)).length }))
     .filter((c) => c.total > 0)
     .sort((a, b) => a.nombre.localeCompare(b.nombre, 'gl'));
 }
