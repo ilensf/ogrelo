@@ -28,11 +28,18 @@ export const gl: Textos = {
     subtitulo: 'Con horario, prezo, teléfono para reservar e como chegar.',
     ciudades: 'Cidades',
     todaGalicia: 'Toda Galicia',
+    guiaTitulo: 'Unha guía para comer vegano e vexetariano en Galicia',
+    guiaTexto: (sitios, ciudades) =>
+      `O Grelo reúne ${sitios} restaurantes, bares e cafetarías de ${ciudades} cidades galegas con oferta vegana ou vexetariana. Cada ficha indica canto da carta é vexetal, o horario, o teléfono para reservar e como chegar. Os sitios están ordenados dos 100 % vexetais aos que só teñen algún prato vegano.`,
+    explorar: 'Explora por cidade',
+    nSitios: (n) => `${n} ${n === 1 ? 'sitio' : 'sitios'}`,
   },
   ciudad: {
     titulo: (lugar) => `Restaurantes veganos e vexetarianos ${lugar} | O Grelo`,
     descripcion: (lugar) => `Onde comer vegano e vexetariano ${lugar}: horarios, prezos, teléfono para reservar e como chegar.`,
     encabezado: (lugar) => `Onde comer vexetariano e vegano ${lugar}`,
+    resumen: (lugar, total, puros) =>
+      `Recollemos ${total} ${total === 1 ? 'sitio' : 'sitios'} para comer vegano ou vexetariano ${lugar}${puros > 0 ? `, ${puros === 1 ? 'un deles 100 % vexetal' : `${puros} deles 100 % vexetais`}` : ''}. Cada ficha indica canto da carta é vexetal, o horario e o teléfono para reservar.`,
     otros: (lugar) => `Outros sitios con algunha opción vegana ${lugar}`,
   },
   dietas: {

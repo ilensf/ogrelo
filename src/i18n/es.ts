@@ -26,11 +26,18 @@ export const es = {
     subtitulo: 'Con horario, precio, teléfono para reservar y cómo llegar.',
     ciudades: 'Ciudades',
     todaGalicia: 'Toda Galicia',
+    guiaTitulo: 'Una guía para comer vegano y vegetariano en Galicia',
+    guiaTexto: (sitios: number, ciudades: number) =>
+      `O Grelo reúne ${sitios} restaurantes, bares y cafeterías de ${ciudades} ciudades gallegas con oferta vegana o vegetariana. Cada ficha indica cuánto de la carta es vegetal, el horario, el teléfono para reservar y cómo llegar. Los sitios están ordenados de los 100 % vegetales a los que solo tienen algún plato vegano.`,
+    explorar: 'Explora por ciudad',
+    nSitios: (n: number) => `${n} ${n === 1 ? 'sitio' : 'sitios'}`,
   },
   ciudad: {
     titulo: (lugar: string) => `Restaurantes veganos y vegetarianos ${lugar} | O Grelo`,
     descripcion: (lugar: string) => `Dónde comer vegano y vegetariano ${lugar}: horarios, precios, teléfono para reservar y cómo llegar.`,
     encabezado: (lugar: string) => `Dónde comer vegetariano y vegano ${lugar}`,
+    resumen: (lugar: string, total: number, puros: number) =>
+      `Hemos recogido ${total} ${total === 1 ? 'sitio' : 'sitios'} para comer vegano o vegetariano ${lugar}${puros > 0 ? `, ${puros === 1 ? 'uno de ellos 100 % vegetal' : `${puros} de ellos 100 % vegetales`}` : ''}. Cada ficha indica cuánto de la carta es vegetal, el horario y el teléfono para reservar.`,
     otros: (lugar: string) => `Otros sitios con alguna opción vegana ${lugar}`,
   },
   dietas: {

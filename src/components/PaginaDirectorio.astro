@@ -17,6 +17,7 @@ const restaurantes = obtenerRestaurantes(idioma, ciudadActual);
 const nombreCiudad = ciudades.find((c) => c.id === ciudadActual)?.nombre;
 const lugar = nombreCiudad ? t.enLugar(nombreCiudad) : '';
 
+const puros = restaurantes.filter((r) => r.dieta === 'vegano' || r.dieta === 'vegetariano').length;
 const titulo = nombreCiudad ? t.ciudad.titulo(lugar) : t.portada.titulo;
 const descripcion = nombreCiudad ? t.ciudad.descripcion(lugar) : undefined;
 const encabezado = nombreCiudad ? t.ciudad.encabezado(lugar) : t.portada.encabezado;
@@ -43,6 +44,25 @@ const ocultas =
     }
     <Directorio client:load restaurantes={restaurantes} base={raiz} idioma={idioma} />
   </div>
+  <section class="contenedor otros">
+    <h2>{t.portada.guiaTitulo}</h2>
+    <p>{nombreCiudad ? t.ciudad.resumen(lugar, restaurantes.length, puros) : t.portada.guiaTexto(restaurantes.length, ciudades.length)}</p>
+    {
+      !nombreCiudad && (
+        <>
+          <h3>{t.portada.explorar}</h3>
+          <ul>
+            {ciudades.map((c) => (
+              <li>
+                <a href={`${raiz}${c.id}/`}>{c.nombre}</a>
+                <span>{t.portada.nSitios(c.total)}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )
+    }
+  </section>
   {
     ocultas.length > 0 && (
       <section class="contenedor otros">
@@ -124,6 +144,10 @@ const ocultas =
   .otros p {
     margin: 0.3rem 0 1rem;
     color: var(--tinta-suave);
+  }
+  .otros h3 {
+    margin: 1.25rem 0 0.6rem;
+    font-size: 1rem;
   }
   .otros ul {
     display: grid;
