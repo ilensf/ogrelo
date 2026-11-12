@@ -40,7 +40,6 @@ export const es = {
     encabezado: (lugar: string) => `Dónde comer vegetariano y vegano ${lugar}`,
     resumen: (lugar: string, total: number, puros: number) =>
       `Hemos recogido ${total} ${total === 1 ? 'sitio' : 'sitios'} para comer vegano o vegetariano ${lugar}${puros > 0 ? `, ${puros === 1 ? 'uno de ellos 100 % vegetal' : `${puros} de ellos 100 % vegetales`}` : ''}. Cada ficha indica cuánto de la carta es vegetal, el horario y el teléfono para reservar.`,
-    otros: (lugar: string) => `Otros sitios con alguna opción vegana ${lugar}`,
   },
   dietas: {
     vegano: { nombre: '100 % vegano', corto: 'Vegano', descripcion: 'Todo lo que sirven es vegetal.' },
@@ -59,6 +58,11 @@ export const es = {
       nombre: 'Tienda 100 % vegana',
       corto: 'Tienda vegana',
       descripcion: 'Tienda donde todo lo que se vende es vegano. No se come allí: se compra para cocinar en casa.',
+    },
+    'tienda-opciones': {
+      nombre: 'Tienda con productos veganos',
+      corto: 'Tienda con veganos',
+      descripcion: 'Tienda o supermercado, normalmente ecológico, con una gama de productos veganos. No todo lo que vende es vegano.',
     },
     'alguna-opcion': {
       nombre: 'Alguna opción vegana',
@@ -173,7 +177,7 @@ export const es = {
       'Una guía de Galicia para quien come vegano y para quien come vegetariano: separamos los sitios 100 % vegetales de los que simplemente tienen buenas opciones, y marcamos cada uno con su color.',
     medidor: 'Qué significa el medidor de hojas',
     reglas:
-      'Lo adaptable solo cuenta para «buenas opciones» si el local lo confirma. Los sitios con «alguna opción» no se muestran por defecto, salvo que busques su nombre, actives ese filtro o estés en una ciudad donde no haya nada mejor.',
+      'Lo adaptable solo cuenta para «buenas opciones» si el local lo confirma. Los sitios con solo uno o dos platos veganos se marcan como «alguna opción».',
     datos: 'De dónde salen los datos',
     datosTexto:
       'La lista parte de directorios especializados, contrastados con prensa local y las webs de los propios locales. Las descripciones son nuestras. Las notas, cuando aparecen, son las de HappyCow: sobre 5 en sitios 100 % veganos o vegetarianos y sobre 4 en los demás. Si un dato no aparece en la ficha es que aún no lo tenemos.',

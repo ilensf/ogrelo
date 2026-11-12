@@ -41,7 +41,7 @@ const marcadores = new Map<string, Marker>();
 
 const CENTRO_GALICIA: [number, number] = [42.8, -8.0];
 /** Distancia en píxeles bajo la cual dos sitios se agrupan en un solo círculo. */
-const RADIO_AGRUPAR = 36;
+const RADIO_AGRUPAR = 30;
 /** Desde este zoom no se agrupa nada: los sitios muy próximos ya se distinguen. */
 const ZOOM_SIN_AGRUPAR = 17.5;
 /** A partir de este zoom se muestra el nombre junto a cada marcador. */
@@ -50,7 +50,7 @@ const ZOOM_ETIQUETAS = 16;
 const escapar = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 
 const HOJA =
-  '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 2C6 7 4 12 5.5 17c1 3.3 3.8 5 6.5 5s5.5-1.7 6.5-5C20 12 18 7 12 2z" fill="currentColor"/></svg>';
+  '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M12 2C6 7 4 12 5.5 17c1 3.3 3.8 5 6.5 5s5.5-1.7 6.5-5C20 12 18 7 12 2z" fill="currentColor"/></svg>';
 
 function icono(p: PuntoMapa, activo: boolean, etiqueta: boolean) {
   return L!.divIcon({
@@ -58,8 +58,8 @@ function icono(p: PuntoMapa, activo: boolean, etiqueta: boolean) {
     html:
       `<span class="pin d-${p.dieta} ${activo ? 'activo' : ''} ${p.exactas ? '' : 'aprox'}">${HOJA}</span>` +
       (etiqueta || activo ? `<span class="pin-nombre">${escapar(p.nombre)}</span>` : ''),
-    iconSize: [32, 32],
-    iconAnchor: [16, 16],
+    iconSize: [26, 26],
+    iconAnchor: [13, 13],
   });
 }
 
@@ -69,6 +69,8 @@ const COLOR_DIETA: Record<Dieta, string> = {
   'carta-vegana': 'var(--c-carta-p)',
   'buenas-opciones': 'var(--c-opciones-p)',
   'alguna-opcion': 'var(--c-alguna-p)',
+  'tienda-vegana': 'var(--c-tienda-p)',
+  'tienda-opciones': 'var(--c-tienda-p)',
 };
 
 /** Anillo con un tramo de color por cada tipo de sitio, proporcional a cuántos hay en el grupo. */
@@ -86,7 +88,7 @@ function anilloGrupo(items: PuntoMapa[]) {
 
 function iconoGrupo(items: PuntoMapa[]) {
   const n = items.length;
-  const lado = n < 5 ? 34 : n < 15 ? 38 : 42;
+  const lado = n < 5 ? 26 : n < 15 ? 30 : 34;
   return L!.divIcon({
     className: 'marcador-veg',
     html: `<span class="grupo-pin" style="background:${anilloGrupo(items)}"><span>${n}</span></span>`,
@@ -360,8 +362,8 @@ onBeforeUnmount(() => {
 :deep(.pin) {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   border: 2px solid #fff;
   color: #fff;
@@ -383,7 +385,7 @@ onBeforeUnmount(() => {
 }
 :deep(.pin-nombre) {
   position: absolute;
-  left: 38px;
+  left: 32px;
   top: 50%;
   transform: translateY(-50%);
   white-space: nowrap;
@@ -400,7 +402,7 @@ onBeforeUnmount(() => {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 4px;
+  padding: 3px;
   border-radius: 50%;
   box-shadow: 0 0 0 1.5px var(--papel), 0 2px 6px rgba(25, 22, 15, 0.3);
   transition: transform 0.15s ease;
@@ -409,7 +411,7 @@ onBeforeUnmount(() => {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  font: 700 0.86rem/1 var(--fuente);
+  font: 700 0.74rem/1 var(--fuente);
   font-variant-numeric: tabular-nums;
   color: var(--tinta);
   background: var(--papel);

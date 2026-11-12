@@ -1,6 +1,6 @@
 {
   "_info": "Generado por `npm run data:transporte`. No editar a mano.",
-  "generado": "2026-11-12T21:05:28.601Z",
+  "generado": "2026-11-12T21:27:15.057Z",
   "fuentes": {
     "a-coruna": "GTFS de la Compañía de Tranvías de La Coruña",
     "ourense": "GTFS del bus urbano de Ourense (Avanza)",
@@ -3226,6 +3226,69 @@
         "1A",
         "12A",
         "20",
+        "24",
+        "BUH",
+        "UDC"
+      ]
+    },
+    "veritas-marineda-coruna": {
+      "paradas": [
+        {
+          "nombre": "Área Comerc.Marineda",
+          "distancia": 219,
+          "lineas": [
+            "11"
+          ]
+        }
+      ],
+      "lineas": [
+        "11"
+      ]
+    },
+    "veritas-juan-florez-coruna": {
+      "paradas": [
+        {
+          "nombre": "Alf.Molina,F.Latorre",
+          "distancia": 27,
+          "lineas": [
+            "24",
+            "UDC"
+          ]
+        },
+        {
+          "nombre": "Juan Flórez, 119",
+          "distancia": 66,
+          "lineas": [
+            "4",
+            "21"
+          ]
+        },
+        {
+          "nombre": "Primo de Rivera, 1",
+          "distancia": 144,
+          "lineas": [
+            "1",
+            "1A",
+            "2",
+            "2A",
+            "17",
+            "21",
+            "23",
+            "23A",
+            "BUH"
+          ]
+        }
+      ],
+      "lineas": [
+        "1",
+        "1A",
+        "2",
+        "2A",
+        "4",
+        "17",
+        "21",
+        "23",
+        "23A",
         "24",
         "BUH",
         "UDC"

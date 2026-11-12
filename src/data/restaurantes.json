@@ -2374,5 +2374,55 @@
     "valoraciones": [],
     "enlaces": {},
     "borrador": true
+  },
+  {
+    "id": "veritas-marineda-coruna",
+    "nombre": "Veritas · Marineda City",
+    "ciudad": "a-coruna",
+    "dieta": "tienda-opciones",
+    "cocina": ["supermercado ecológico"],
+    "horario": {
+      "lun": [["10:00", "22:00"]], "mar": [["10:00", "22:00"]], "mie": [["10:00", "22:00"]],
+      "jue": [["10:00", "22:00"]], "vie": [["10:00", "22:00"]], "sab": [["10:00", "22:00"]]
+    },
+    "servicios": ["domicilio"],
+    "web": "https://www.veritas.es/",
+    "carta": null,
+    "precio": null,
+    "precioNota": null,
+    "valoraciones": [],
+    "enlaces": {},
+    "borrador": true,
+    "barrio": null,
+    "direccion": "Estrada dos Baños de Arteixo, 43 (Centro Comercial Marineda City), planta baja, A Coruña",
+    "telefono": "+34661032070",
+    "coords": { "lat": 43.344394, "lng": -8.427322, "exactas": true },
+    "resumen": "Supermercado ecológico dentro del centro comercial Marineda City, con parking gratuito y panadería de libre servicio. Tiene una gama «Veggie» de productos veganos, aunque no todo lo que vende lo es.",
+    "destacados": ["Gama Veggie", "Salsas y condimentos veganos", "Galletas y dulces veganos"]
+  },
+  {
+    "id": "veritas-juan-florez-coruna",
+    "nombre": "Veritas · Juan Flórez",
+    "ciudad": "a-coruna",
+    "dieta": "tienda-opciones",
+    "cocina": ["supermercado ecológico"],
+    "horario": {
+      "lun": [["09:00", "21:00"]], "mar": [["09:00", "21:00"]], "mie": [["09:00", "21:00"]],
+      "jue": [["09:00", "21:00"]], "vie": [["09:00", "21:00"]], "sab": [["09:00", "21:00"]]
+    },
+    "servicios": [],
+    "web": "https://www.veritas.es/",
+    "carta": null,
+    "precio": null,
+    "precioNota": null,
+    "valoraciones": [],
+    "enlaces": {},
+    "borrador": true,
+    "barrio": "ensanche",
+    "direccion": "Rúa de Juan Flórez, 65, 15005 A Coruña",
+    "telefono": null,
+    "coords": { "lat": 43.359437, "lng": -8.40512, "exactas": false },
+    "resumen": "Supermercado ecológico en el Ensanche con panadería de libre servicio. Tiene una gama «Veggie» de productos veganos, aunque no todo lo que vende lo es.",
+    "destacados": ["Gama Veggie", "Salsas y condimentos veganos", "Galletas y dulces veganos"]
   }
 ]

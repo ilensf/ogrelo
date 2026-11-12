@@ -7,7 +7,7 @@ const restaurantes = leer('../src/data/restaurantes.json');
 const barrios = leer('../src/data/barrios.json');
 const ciudades = leer('../src/data/ciudades.json');
 
-const DIETAS = ['vegano', 'vegetariano', 'carta-vegana', 'buenas-opciones', 'alguna-opcion', 'tienda-vegana'];
+const DIETAS = ['vegano', 'vegetariano', 'carta-vegana', 'buenas-opciones', 'alguna-opcion', 'tienda-vegana', 'tienda-opciones'];
 const DIAS = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab', 'dom'];
 const SERVICIOS = ['terraza', 'para-llevar', 'domicilio', 'pet-friendly', 'sin-gluten', 'accesible', 'wifi'];
 const HORA = /^([01]\d|2[0-3]):[0-5]\d$/;

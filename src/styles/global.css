@@ -170,7 +170,8 @@
   --d-texto: var(--c-opciones-t);
   --d-punto: var(--c-opciones-p);
 }
-.d-tienda-vegana {
+.d-tienda-vegana,
+.d-tienda-opciones {
   --d-fondo: var(--c-tienda-f);
   --d-texto: var(--c-tienda-t);
   --d-punto: var(--c-tienda-p);

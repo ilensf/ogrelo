@@ -33,7 +33,7 @@ export const gl: Textos = {
       `O Grelo reúne ${sitios} restaurantes, bares e cafetarías de ${ciudades} cidades galegas con oferta vegana ou vexetariana. Cada ficha indica canto da carta é vexetal, o horario, o teléfono para reservar e como chegar. Os sitios están ordenados dos 100 % vexetais aos que só teñen algún prato vegano.`,
     explorar: 'Explora por cidade',
     tiendasTitulo: 'Tendas veganas',
-    tiendasTexto: 'Sitios onde non se come, pero se merca comida vegana para cociñar na casa.',
+    tiendasTexto: 'Sitios onde non se come, pero mércase comida vegana para cociñar na casa.',
     nSitios: (n) => `${n} ${n === 1 ? 'sitio' : 'sitios'}`,
   },
   ciudad: {
@@ -42,7 +42,6 @@ export const gl: Textos = {
     encabezado: (lugar) => `Onde comer vexetariano e vegano ${lugar}`,
     resumen: (lugar, total, puros) =>
       `Recollemos ${total} ${total === 1 ? 'sitio' : 'sitios'} para comer vegano ou vexetariano ${lugar}${puros > 0 ? `, ${puros === 1 ? 'un deles 100 % vexetal' : `${puros} deles 100 % vexetais`}` : ''}. Cada ficha indica canto da carta é vexetal, o horario e o teléfono para reservar.`,
-    otros: (lugar) => `Outros sitios con algunha opción vegana ${lugar}`,
   },
   dietas: {
     vegano: { nombre: '100 % vegano', corto: 'Vegano', descripcion: 'Todo o que serven é vexetal.' },
@@ -61,6 +60,11 @@ export const gl: Textos = {
       nombre: 'Tenda 100 % vegana',
       corto: 'Tenda vegana',
       descripcion: 'Tenda onde todo o que se vende é vegano. Non se come alí: mércase para cociñar na casa.',
+    },
+    'tienda-opciones': {
+      nombre: 'Tenda con produtos veganos',
+      corto: 'Tenda con veganos',
+      descripcion: 'Tenda ou supermercado, normalmente ecolóxico, cunha gama de produtos veganos. Non todo o que vende é vegano.',
     },
     'alguna-opcion': {
       nombre: 'Algunha opción vegana',
@@ -192,7 +196,7 @@ export const gl: Textos = {
       'Unha guía de Galicia para quen come vegano e para quen come vexetariano: separamos os sitios 100 % vexetais dos que simplemente teñen boas opcións, e marcamos cada un coa súa cor.',
     medidor: 'Que significa o medidor de follas',
     reglas:
-      'O adaptable só conta para «boas opcións» se o local o confirma. Os sitios con «algunha opción» non se mostran por defecto, agás que busques o seu nome, actives ese filtro ou esteas nunha cidade onde non haxa nada mellor.',
+      'O adaptable só conta para «boas opcións» se o local o confirma. Os sitios con só un ou dous pratos veganos márcanse como «algunha opción».',
     datos: 'De onde saen os datos',
     datosTexto:
       'A lista parte de directorios especializados, contrastados coa prensa local e as webs dos propios locais. As descricións son nosas. As notas, cando aparecen, son as de HappyCow: sobre 5 nos sitios 100 % veganos ou vexetarianos e sobre 4 nos demais. Se un dato non aparece na ficha é que aínda non o temos.',

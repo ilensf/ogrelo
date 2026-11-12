@@ -24,9 +24,6 @@ const puros = restaurantes.filter((r) => r.dieta === 'vegano' || r.dieta === 've
 const titulo = nombreCiudad ? t.ciudad.titulo(lugar) : t.portada.titulo;
 const descripcion = nombreCiudad ? t.ciudad.descripcion(lugar) : undefined;
 const encabezado = nombreCiudad ? t.ciudad.encabezado(lugar) : t.portada.encabezado;
-// Las fichas ocultas por defecto se enlazan aquí para que los buscadores también lleguen a ellas.
-const ocultas =
-  ciudadActual && restaurantes.some((r) => r.dieta !== 'alguna-opcion') ? restaurantes.filter((r) => r.dieta === 'alguna-opcion') : [];
 ---
 
 <Base idioma={idioma} titulo={titulo} descripcion={descripcion}>
@@ -38,9 +35,9 @@ const ocultas =
     {
       ciudades.length > 1 && (
         <nav class="ciudades" aria-label={t.portada.ciudades}>
-          <a href={raiz} aria-current={ciudadActual ? undefined : 'page'}>{t.portada.todaGalicia}</a>
+          <a href={raiz} aria-current={ciudadActual ? undefined : 'page'}>{t.portada.todaGalicia} ({ciudades.reduce((n, c) => n + c.total, 0)})</a>
           {ciudades.map((c) => (
-            <a href={`${raiz}${c.id}/`} aria-current={c.id === ciudadActual ? 'page' : undefined}>{c.nombre}</a>
+            <a href={`${raiz}${c.id}/`} aria-current={c.id === ciudadActual ? 'page' : undefined}>{c.nombre} ({c.total})</a>
           ))}
         </nav>
       )
@@ -76,22 +73,6 @@ const ocultas =
             <li>
               <a href={`${raiz}restaurante/${r.id}/`}>{r.nombre}</a>
               <span>{ciudadActual ? r.direccion.split(',')[0] : r.ciudadNombre}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )
-  }
-  {
-    ocultas.length > 0 && (
-      <section class="contenedor otros">
-        <h2>{t.ciudad.otros(lugar)}</h2>
-        <p>{t.dietas['alguna-opcion'].descripcion}</p>
-        <ul>
-          {ocultas.map((r) => (
-            <li>
-              <a href={`${raiz}restaurante/${r.id}/`}>{r.nombre}</a>
-              <span>{r.direccion.split(',')[0]}</span>
             </li>
           ))}
         </ul>

@@ -49,8 +49,7 @@ const barrios = computed(() => {
 });
 const variasCiudades = computed(() => new Set(lista.value.map((r) => r.ciudad)).size > 1);
 const lugar = (r: RestauranteVista) => (variasCiudades.value ? r.ciudadNombre : (r.barrioNombre ?? r.ciudadNombre));
-/** «Alguna opción» sale oculta por defecto, salvo donde no haya nada mejor. */
-const ocultarAlguna = computed(() => lista.value.some((r) => r.dieta !== 'alguna-opcion'));
+const dietasPresentes = computed(() => DIETAS.filter((x) => conteoDieta.value[x]));
 const cocinas = computed(() =>
   [...new Set(lista.value.flatMap((r) => r.cocina))].sort((a, b) =>
     etiquetaCocina(t, a).localeCompare(etiquetaCocina(t, b), props.idioma),
@@ -74,11 +73,7 @@ const filtrados = computed(() => {
       const pajar = normalizar([r.nombre, r.resumen, cocinas, r.destacados.join(' '), r.barrioNombre ?? '', r.ciudadNombre].join(' '));
       if (!pajar.includes(q)) return false;
     }
-    if (dietas.value.length) {
-      if (!dietas.value.includes(r.dieta)) return false;
-    } else if (!q && ocultarAlguna.value && r.dieta === 'alguna-opcion') {
-      return false;
-    }
+    if (dietas.value.length && !dietas.value.includes(r.dieta)) return false;
     if (barrio.value && r.barrio !== barrio.value) return false;
     if (cocina.value && !r.cocina.includes(cocina.value)) return false;
     if (precioMax.value && (!r.precio || r.precio > precioMax.value)) return false;
@@ -257,7 +252,7 @@ onBeforeUnmount(() => {
         <button type="button" class="chip" :aria-pressed="modo === 'comprar'" @click="modo = 'comprar'">{{ t.directorio.modoComprar }}</button>
       </div>
 
-      <div v-if="modo === 'comer'" class="chips" role="group" :aria-label="t.directorio.tipoSitio">
+      <div v-if="dietasPresentes.length > 1" class="chips" role="group" :aria-label="t.directorio.tipoSitio">
         <button
           type="button"
           class="chip chip--abierto"
@@ -270,7 +265,7 @@ onBeforeUnmount(() => {
         </button>
         <span class="separador" aria-hidden="true"></span>
         <button
-          v-for="d in DIETAS.filter((x) => conteoDieta[x])"
+          v-for="d in dietasPresentes"
           :key="d"
           type="button"
           class="chip chip--dieta"

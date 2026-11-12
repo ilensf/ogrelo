@@ -24,6 +24,7 @@ const ORDEN_DIETA: Record<Dieta, number> = {
   'buenas-opciones': 3,
   'alguna-opcion': 4,
   'tienda-vegana': 5,
+  'tienda-opciones': 6,
 };
 
 function enlaceGoogleMaps(r: Restaurante): string {
