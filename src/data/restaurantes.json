@@ -2307,7 +2307,7 @@
     "dieta": "tienda-vegana",
     "cocina": ["carnicería vegana"],
     "barrio": null,
-    "coords": { "lat": 43.358531, "lng": -8.421198, "exactas": false },
+    "coords": { "lat": 43.362314, "lng": -8.414665, "exactas": true },
     "telefono": "+34881129245",
     "web": "https://www.instagram.com/mivaina.vutcher.shop",
     "carta": null,

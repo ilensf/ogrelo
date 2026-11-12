@@ -1,6 +1,6 @@
 {
   "_info": "Generado por `npm run data:transporte`. No editar a mano.",
-  "generado": "2026-11-12T20:30:08.733Z",
+  "generado": "2026-11-12T21:05:28.601Z",
   "fuentes": {
     "a-coruna": "GTFS de la Compañía de Tranvías de La Coruña",
     "ourense": "GTFS del bus urbano de Ourense (Avanza)",
@@ -2102,39 +2102,37 @@
     "mi-vaina-coruna": {
       "paradas": [
         {
-          "nombre": "Av. de Fisterra, 288",
-          "distancia": 43,
+          "nombre": "Av. de Fisterra, 147",
+          "distancia": 60,
           "lineas": [
             "6",
-            "6A"
+            "6A",
+            "20"
           ]
         },
         {
-          "nombre": "Rda. de Outeiro, 219",
-          "distancia": 126,
+          "nombre": "Rda. de Nelle, 109",
+          "distancia": 171,
           "lineas": [
-            "12A",
-            "14",
-            "22",
-            "BUH"
+            "12"
           ]
         },
         {
-          "nombre": "Ventorrillo,C.Saúde",
-          "distancia": 133,
+          "nombre": "Av. de Fisterra, 192",
+          "distancia": 180,
           "lineas": [
-            "7"
+            "6",
+            "6A",
+            "22"
           ]
         }
       ],
       "lineas": [
         "6",
         "6A",
-        "7",
-        "12A",
-        "14",
-        "22",
-        "BUH"
+        "12",
+        "20",
+        "22"
       ]
     },
     "curcuma-vigo": {
